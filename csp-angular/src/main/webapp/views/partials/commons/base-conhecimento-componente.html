@@ -1,0 +1,86 @@
+<div ng-controller="KnowledgeBaseController">
+    <div>
+        <!-- Nested node template -->
+        <script type="text/ng-template" id="nodes_renderer.html">
+            <i class="fa fa-file" aria-hidden="true" ng-if="!node.diretorio"></i>
+
+            <button class="btn btn-default btn-xs" ng-if="node.diretorio && !isFolderExpanded(node)" ng-click="expand(node)">
+                <span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
+            </button>
+
+            <button class="btn btn-default btn-xs" ng-if="node.diretorio && isFolderExpanded(node)" ng-click="retain(node)">
+                <span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span>
+            </button>
+
+            <span ng-click="setSelected(node);" style="cursor: pointer;" ng-class="{'label label-info':(node.id == selected.id)}">
+              {{node.nome}}
+            </span>
+
+            <div class="btn-group float-right">
+                <button class="btn btn-default btn-xs" ng-if="node.diretorio && mode === 'EDITION'"
+                        data-toggle="modal" data-target="#base-conhecimento-modal" ng-click="modalAdd(node.id)">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+
+                <button class="btn btn-success btn-xs" ng-click="downloadArquivo(node)"  ng-if="false">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+
+                <a class="btn btn-success btn-xs" download="{{node.nome}}" href="{{downloadArquivoURL(node)}}" ng-if="!node.diretorio && mode === 'EDITION'">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+                <button class="btn btn-danger btn-xs" ng-click="deletarRecurso(node.id)" ng-if="canEdit(node) && mode === 'EDITION'">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
+
+                <button type="button" class="btn btn-success btn-xs" ng-click="selecionarRecurso(node)" ng-if="!node.diretorio && mode === 'SELECTION'">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <ul class="no-style" ng-if="node.filhos.length > 0">
+                <li class="m-t-5" ng-repeat="node in node.filhos" class="" data-id="{{node.id}}" ng-include="'nodes_renderer.html'">
+                </li>
+            </ul>
+        </script>
+        <div class="">
+            <ul class="no-style">
+                <li class="m-t-5" ng-repeat="node in arquivos" class="" data-id="{{node.id}}"
+                    ng-include="'nodes_renderer.html'"></li>
+            </ul>
+        </div>
+    </div>
+    <div ng-if="mode === 'EDITION' && !(selected == null || selected.diretorio)">
+    	<br>
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<b>Documento Selecionado: </b> {{selected.nome}}
+    		</div>
+    		<div class="panel-body">
+    			<label for="selecionado"><b>Tags:</b></label>
+            	<tags-input on-tag-added="updateResourceTags()" on-tag-removed="updateResourceTags()" placeholder="Adicionar uma tag"  ng-model="selected.tags" display-property="texto" ng-readonly="true" on-tag-removing="removeTag(selected)">
+                	<auto-complete select-first-match="false" source="loadTags($query)"></auto-complete>
+                </tags-input>
+    		</div>
+    	</div>
+    </div>
+    <div id="arquivosSelecionados" ng-if="mode === 'SELECTION'">
+        <label>Arquivos Selecionados:</label><br>
+        <table class="table table-condensed">
+            <tr>
+                <th>Nome do Arquivo</th>
+                <th>Remover</th>
+            </tr>
+            <tr ng-repeat="arquivo in arquivosSelecionados">
+                <td>
+                    {{arquivo.nome}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="removerArquivo(arquivo)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

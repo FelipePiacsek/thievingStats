@@ -1,0 +1,130 @@
+<div class="container-fluid p-b-20" ng-controller="UserCreationController">
+	<h1 ng-if="mode === 'CREATE'">Criar Usu&aacute;rio</h1>
+	<h1 ng-if="mode === 'UPDATE'">Editar Usu&aacute;rio</h1>
+	<div class="container-fluid container-fixed-lg bg-white p-b-20">
+    <form name="createuserForm" novalidate valdr-type="Usuario">
+ 		<div class="col-md-12">
+			<div class="alert alert-danger" role="alert" ng-if="invalidMessage !== ''">{{invalidMessage}}</div>
+    	</div>
+    	<div>
+	    	<div class="form-group m-t-25" valdr-form-group>
+				<div class="col-md-4">
+					<label for="nome">Nome</label>
+					<input type="text" id="nome" name="nome" class="form-control" ng-model="user.nome">
+				</div>
+			</div>
+			<div class="form-group m-t-25" valdr-form-group>
+				<div class="col-md-4">
+					<label for="sobrenome">Sobrenome</label>
+					<input type="text" id="sobrenome" name="sobrenome" class="form-control" ng-model="user.sobrenome">
+				</div>
+			</div>
+			<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+				<div class="col-md-4">
+					<label for="email">E-mail</label>
+					<input type="text" id="email" name="email" class="form-control" ng-model="user.email">
+				</div>
+			</div>
+			<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group ng-if="mode === 'CREATE'">
+				<div class="col-md-4">
+					<label for="senha" ng-if="mode === 'CREATE'">Senha</label>
+					<input type="password" id="senha" name="senha" class="form-control" ng-model="user.senha" ng-if="mode === 'CREATE'">
+				</div>
+				<div class="col-md-4">
+					<label for="confirmacaoSenha" ng-if="mode === 'CREATE'">Confirmar Senha</label>
+					<input type="password" id="confirmacaoSenha" name="confirmacaoSenha" class="form-control" ng-model="confirmacaoSenha" ng-if="mode === 'CREATE'">
+				</div>
+			</div>
+			<div class="form-group m-t-25 col-md-12">
+				<label>Perfil</label><br>
+				<div class="checkbox check-success checkbox-circle">
+					<input type="checkbox" id="perfilAdministrador" name="perfilAdministrador" ng-model="administradorCheck">
+					<label for="perfilAdministrador">Administrador</label>
+					<input type="checkbox" id="perfilPmo" name="perfilPmo" ng-model="PMOCheck">
+					<label for="perfilPmo">PMO</label>
+					<input type="checkbox" id="perfilGerente" name="perfilGerente" ng-model="gerenteCheck">
+					<label for="perfilGerente">Gerente</label>
+					<input type="checkbox" id="perfilRecurso" name="perfilRecurso" ng-model="recursoCheck" ng-disabled="disableRecurso()">
+					<label for="perfilRecurso">Recurso</label>
+				</div>
+			</div>
+			<div ng-if="recursoCheck">
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="col-md-4">
+						<label for="gerente">Gerente</label><br>
+						<select class="form-control" id="gerente" name="gerente" ng-model="user.colaborador.gerente.id" ng-options="g.id as g.email for g in gerentesDisponiveis" >
+							<option value="">Selecione um gerente</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="col-md-4">
+						<label>Centro de custo</label><br>
+						<input type="text" id="centroDeCusto" name="centroDeCusto" class="form-control" value="{{centroDeCustoSelecionado.exibicao}} : {{centroDeCustoSelecionado.descricao}}" disabled="true"><br><br>
+					</div>
+					<div class="col-md-12">
+						<centro-de-custo-componente mode="'SELECTION'"></centro-de-custo-componente>
+					</div>
+				</div>
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="form-group m-t-25" valdr-form-group>
+					<label for="user-calendar">Calendário</label><br><br>
+					<label for="user-calendar" ng-if="mode === 'UPDATE'">{{user.colaborador.calendario.nome}}</label><br><br>
+						<label>Dias Trabalháveis</label>
+						<div class="checkbox check-success checkbox-circle">
+							<input type="checkbox" id="segundaFeira" name="segundaFeira" ng-model="user.colaborador.calendario.segundaFeira"/>
+							<label for="segundaFeira">Segunda-feira</label>
+							<input type="checkbox" id="tercaFeira" name="tercaFeira" ng-model="user.colaborador.calendario.tercaFeira"/>
+							<label for="tercaFeira">Terça-feira</label>
+							<input type="checkbox" id="quartaFeira" name="quartaFeira" ng-model="user.colaborador.calendario.quartaFeira"/>
+							<label for="quartaFeira">Quarta-feira</label>
+							<input type="checkbox" id="quintaFeira" name="quintaFeira" ng-model="user.colaborador.calendario.quintaFeira"/>
+							<label for="quintaFeira">Quinta-feira</label>
+							<input type="checkbox" id="sextaFeira" name="sextaFeira" ng-model="user.colaborador.calendario.sextaFeira"/>
+							<label for="sextaFeira">Sexta-feira</label>
+							<input type="checkbox" id="sabado" name="sabado" ng-model="user.colaborador.calendario.sabado"/>
+							<label for="sabado">Sábado</label>
+							<input type="checkbox" id="domingo" name="domingo" ng-model="user.colaborador.calendario.domingo"/>
+							<label for="domingo">Domingo</label>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<label for="calendarioSelecionado">Eventos de calendários externos</label>
+						<select class="form-control" id="calendarioSelecionado" name="calendarioSelecionado" ng-model="calendarioSelecionado" ng-options="c as c.nome for c in calendariosDisponiveis">
+							<option value="">Selecione um calendário</option>
+						</select>
+					</div>
+					<button class="btn btn-default m-t-25" ng-click="adicionarCalendario(calendarioSelecionado)"><i class="fa fa-angle-double-right"></i></button>
+				</div>
+				<div class="form-group m-t-25 col-md-12" valdr-form-group>
+					<label>Eventos</label><br>
+					<table class="table table-condensed assignment-table">
+						<tr>
+					    	<th>Evento</th>
+					    	<th>Data Início</th>
+					    	<th>Data Fim</th>
+					    	<th>Remover</th>
+					  	</tr>
+						<tr ng-repeat="e in user.colaborador.calendario.eventos">
+							<td class="assignment-table">{{e.nome}}</td>
+							<td class="assignment-table">{{e.dataInicio | date : 'dd/MM/yyyy'}}</td>
+							<td class="assignment-table">{{e.dataFim | date : 'dd/MM/yyyy'}}</td>
+							<td class="assignment-table">
+								<button class="btn btn-default" ng-click="removerEvento(e)"><i class="fa fa-trash-o"></i></button>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</form>
+	</div>
+	<button type="button" class="btn btn-default" ng-click="voltar()">
+		Cancelar
+	</button>
+	<button class="btn btn-primary m-t-35 btn-animated from-left pg pg-save" ng-click="salvar()">
+		<span><i class="fa fa-save m-r-5"></i>Salvar</span>
+	</button>
+	<centro-de-custo-modal></centro-de-custo-modal>
+</div>

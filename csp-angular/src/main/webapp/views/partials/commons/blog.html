@@ -1,0 +1,54 @@
+<div class="container-fluid" ng-controller="BlogController">
+    <h1>Blog</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="panel-title">
+            </div>
+            <div class="pull-right">
+                <div class="col-xs-6">
+                    <button id="createBtn" class="btn btn-primary btn-cons" ng-click="criar()"><i class="fa fa-plus"></i> Nova Postagem</button>
+                </div>
+            </div>
+            <div>
+            	<label for="buscar">Buscar:</label>
+	            <input style="width: 100px" id="texto" name="texto" type="text" ng-model="texto"/>
+            	<button class="btn btn-primary" ng-click="buscar(texto)">
+                	<span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Criador</th>
+                    <th>Data de Criação</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="post in posts">
+                    <td>{{post.titulo}}</td>
+                    <td>{{post.usuario.nome}} {{post.usuario.sobrenome}}</td>
+                    <td>{{ post.dataCriacao | date : 'dd/MM/yyyy'}}</td>
+                    <td>
+                        <button class="btn btn-default" aria-label="Left Align" ui-sref="commons.post_view({id:post.id})">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="excluirPost(post)" ng-if="proprio(post) || isAdministrador()" title="Remover">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <botoes-paginacao></botoes-paginacao>
+    </div>
+</div>

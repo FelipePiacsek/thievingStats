@@ -1,0 +1,37 @@
+<div class="modal fade" id="blog-post-modal" ng-controller="BlogPostModalController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" ng-show="editarPost">Editar Publicação</h4>
+	  	<h4 class="modal-title" ng-show="!editarPost">Editar Comentário</h4>
+      </div>
+      <div class="modal-body">
+      		<form name="BlogPostModalForm" novalidate>
+	      		<div class="row" ng-show="editarPost">
+	      			<div class="col-md-12">
+						<label for="topico">Tópico:</label>
+						<input ng-required="editarPost" type="text"  class="form-control" ng-model="post.titulo" id="topico" name="titulo">
+					</div>
+				</div>
+	 			<div class="row" ng-show="editarPost">
+	                <div class="col-md-12">
+	                    <label for="mensagem">Publicação:</label><br>
+	                    <textarea ng-required="editarPost" id="mensagem" ng-model="post.mensagem" class="form-control"></textarea>
+	                </div>
+			    </div>
+			    <div class="row" ng-show="!editarPost">
+	                <div class="col-md-12">
+	                    <label for="mensagem">Comentário:</label><br>
+	                    <textarea ng-required="!editarPost" id="mensagem" ng-model="comentario.mensagem" class="form-control"></textarea>
+	                </div>
+			    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" type="submit" ng-click="editar()">Salvar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

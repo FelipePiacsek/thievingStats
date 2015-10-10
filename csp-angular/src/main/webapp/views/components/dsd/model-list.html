@@ -1,0 +1,23 @@
+<div class="container-fluid" ng-controller="ModelListController">
+	<h1>{{pageTitle}}</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="panel-title">
+			</div>
+			<div class="pull-right" ng-if="permiteCriacao">
+				<button id="createBtn" class="btn btn-primary btn-cons" ng-click="create()"><i class="fa fa-plus"></i> Criar</button>
+			</div>
+			<componente-filtragem></componente-filtragem>
+		</div>
+		<div class="panel-body">
+			<dsd-table  table-data="tableData" table-labels="camposListagem" keys="keys" show-buttons="exibeBotoes"
+						read="read(data)" update="update(data)" remove="remove(data)" show-view="showView" 
+						show-edit="showEdit" show-remove="showRemove">
+			</dsd-table>
+		</div>
+		<div ng-show="tableData.length > 0">
+			<botoes-paginacao></botoes-paginacao>
+		</div>
+	</div>
+</div>
+<filtro-modal></filtro-modal>

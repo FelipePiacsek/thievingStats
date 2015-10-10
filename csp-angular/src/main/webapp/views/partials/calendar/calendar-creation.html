@@ -1,0 +1,56 @@
+<div class="container-fluid" ng-controller="CalendarCreationController">
+	<h1>Criar Calendário</h1>
+	<div class="container-fluid container-fixed-lg bg-white p-b-20">
+	<form name="calendarioForm" novalidate valdr-type="Calendario">
+ 		<div class="col-md-12">
+			<div class="alert alert-danger" role="alert" ng-if="invalidMessage !== ''">{{invalidMessage}}</div>
+	    </div>
+	    <div>
+	    	<div class="form-group m-t-25" valdr-form-group>
+				<label for="nome">Nome</label>
+				<input id="nome" name="nome" type="text" class="form-control" ng-model="calendar.nome"/>
+			</div>
+
+			<div class="form-group m-t-25" valdr-form-group>
+				<label for="calendarioBase">Calendário Base</label><br>
+				<span class="col-md-3">
+					<select class="form-control" id="calendarioBase" name="calendarioBase" ng-model="calendarioSelecionado" ng-options="c as c.nome for c in calendariosDisponiveis">
+						<option value="">Selecione um calendário</option>
+					</select>
+				</span>
+				<button class="btn btn-default"  data-toggle="tooltip" title="Adicionar" data-original-title="Adicionar" ng-click="adicionarCalendarioBase()" ui-jq="tooltip"><i class="fa fa-angle-double-right"></i></button>
+			</div>
+			<label class="m-t-15"><b>Eventos do calendário</b></label>
+			<div class="pull-right">
+				<div class="col-xs-12">
+					<button class="btn btn-default" data-toggle="modal" data-target="#event-modal"><i class="fa fa-plus"></i> Novo Evento</button>
+				</div>
+			</div>
+			<table class="table table-condensed m-t-15">
+				<tr>
+			    	<th>Evento</th>
+			    	<th>Data Início</th>
+			    	<th>Data Fim</th>
+			    	<th>Remover</th>
+			  	</tr>
+				<tr ng-repeat="e in calendar.eventos">
+					<td class="assignment-table">{{e.nome}}</td>
+					<td class="assignment-table">{{e.dataInicio | date : 'dd/MM/yyyy'}}</td>
+					<td class="assignment-table">{{e.dataFim | date : 'dd/MM/yyyy'}}</td>
+					<td class="assignment-table">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default" data-toggle="tooltip" title="Remover" data-original-title="Remover" ui-jq="tooltip" ng-click="removerEvento(e)"><i class="fa fa-trash-o"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<botao-cancelar-voltar mostrar-cancelar="'true'"></botao-cancelar-voltar>	
+			<button class="btn btn-primary m-t-35 btn-animated from-left pg pg-save" ng-click="salvar()">
+				<span><i class="fa fa-save m-r-5"></i>Salvar</span>
+			</button>
+		</div>
+	</form>
+	</div>
+	<event-modal></event-modal>
+</div>

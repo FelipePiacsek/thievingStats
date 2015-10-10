@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Built-By: FPiacsek
+Build-Jdk: 1.8.0_31
+Created-By: Maven Integration for Eclipse
+Dependencies: org.codehaus.jackson.jackson-jaxrs org.codehaus.jackson.
+ jackson-mapper-asl, org.jboss.resteasy.resteasy-jackson-provider, org
+ .jboss.resteasy.resteasy-jaxb-provider, org.jboss.resteasy.resteasy-j
+ axrs, org.jboss.resteasy.resteasy-multipart-provider, org.jboss.reste
+ asy.resteasy-atom-provider, org.jboss.resteasy.resteasy-cdi, org.jbos
+ s.resteasy.resteasy-jettison-provider, org.jboss.resteasy.resteasy-js
+ api, org.jboss.resteasy.resteasy-yaml-provider, org.apache.commons.la
+ ng, org.apache.commons.io, org.apache.commons.collections, org.joda.t
+ ime
+

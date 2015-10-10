@@ -1,0 +1,40 @@
+<div class="modal fade" id="forum-modal" ng-controller="ForumModalController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+      		<form name="forumForm" novalidate valdr-type="Post">
+ 			<div class="row">
+                <div class="col-md-12">
+                	<div valdr-form-group>
+	                    <label for="topico">Tópico:</label>
+	                    <input type="text" class="form-control" ng-model="topico" id="topico" name="titulo" ng-readonly="mode === 'EDITION'">
+					</div>
+
+					<div valdr-form-group>
+	                    <label for="mensagem">Publicação:</label><br>
+	                    <textarea id="mensagem" ng-model="mensagem" class="form-control" name="mensagem"></textarea>
+                    </div>
+                    
+	                    
+	                <div class="checkbox ">
+						<input type="checkbox" ng-model="seguir" id="seguir">
+						<label for="seguir">Seguir este tópico?</label>
+					</div>
+                    
+                    <label>Base de Conhecimento:</label><br>
+					<base-conhecimento-componente mode="'SELECTION'" css-class="'col-md-6'"></base-conhecimento-componente>
+                </div>
+		    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" type="submit" ng-click="publicar()">Publicar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

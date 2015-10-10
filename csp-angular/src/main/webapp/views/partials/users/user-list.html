@@ -1,0 +1,38 @@
+<div class="container-fluid p-b-20" ng-controller="UserListController">
+	<h1>Usuários</h1>
+	<div class="panel panel-default">
+		<componente-filtragem></componente-filtragem>
+		<button id="createBtn" class="btn btn-primary btn-cons" ng-click="create()"><i class="fa fa-plus"></i> Criar</button>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-hover">
+			    	<th ng-repeat="campo in tableLabels">
+				    	{{campo.exibicao}}
+			    	</th>
+			    	<th>Ações</th>
+					<tr ng-repeat="data in tableData">
+				    	<td ng-repeat="campo in tableLabels">
+						    {{data[campo.nome]}}
+						</td>
+						<td>
+							<div class="btn-group">
+								<button type="button" class="btn btn-default tip" data-toggle="tooltip" title="Visualizar" data-original-title="Visualizar" ui-jq="tooltip" ng-click="read(data)"><i class="fa fa-eye"></i>
+								</button>
+								<button type="button" class="btn btn-default" data-toggle="tooltip" title="Editar" data-original-title="Editar" ui-jq="tooltip" ng-click="update(data)" ng-disabled="!data.ativo"><i class="fa fa-pencil"></i>
+								</button>
+								<button type="button" class="btn btn-default" data-toggle="tooltip" title="Bloquear" data-original-title="Bloquear" ui-jq="tooltip" ng-click="bloquear(data)" ng-disabled="!data.ativo"><i class="glyphicon glyphicon-ban-circle"></i>
+								</button>
+								<button type="button" class="btn btn-default" data-toggle="tooltip" title="Realocações" data-original-title="Realoca��es" ui-jq="tooltip" ng-click="realocar(data)" ng-if="!data.ativo"><i class="glyphicon glyphicon-wrench"></i>
+								</button>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div ng-show="tableData.length > 0">
+			<botoes-paginacao></botoes-paginacao>
+		</div>
+	</div>
+</div>
+<filtro-modal></filtro-modal>

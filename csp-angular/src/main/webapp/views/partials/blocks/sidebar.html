@@ -1,0 +1,169 @@
+    <div class="page-sidebar" data-pages="sidebar" pg-sidebar ng-class="{'hidden' : plainTemplate()}">
+      <div class="sidebar-header">
+        <img src="images/logo.png" alt="logo" class="brand" data-src="images/logo.png" ui-jq="unveil" data-src-retina="images/logo.png" width="168" height="55">
+      </div>
+      <div id="sidebarMenu" class="sidebar-menu" ng-controller="MenuController">
+        <ul class="menu-items">
+          <li class="m-t-30 open">
+            <a ui.sref="nextel.home" ng-click="call(verHome, null)">
+              <span class="title">Home</span>
+            </a>
+            <span class="icon-thumbnail bg-success"><i class="pg-home"></i></span>
+          </li>
+          <li class="open active">
+            <a href="javascript:;"><span class="title">P&uacute;blico</span>
+              <span class="arrow open active"></span>
+            </a>
+            <span class="icon-thumbnail"><i class="fa fa-globe"></i></span>
+            <ul class="sub-menu">
+              <li>
+                <a ng-click="call(verMural, null)">
+                  <span class="title">Mural</span>
+                </a>
+                <span class="icon-thumbnail"><i class="pg-grid"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verAlertas, null)">
+                  <span class="title">Notificações</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-bell"></i></span>
+              </li>
+              <li ng-if="isRecurso()">
+                <a ng-click="call(verAtividadesRotineiras, null)">
+                  <span class="title">Atividades</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-tasks"></i></span>
+              </li>
+              <li ng-if="isGerente()">
+                <a ng-click="call(verPendencias, null)">
+                  <span class="title">Pend&ecirc;ncias</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-exclamation"></i></span>
+              </li>
+              <li ng-if="isGerente()">
+                <a ng-click="call(gerenciarAtividades, null)">
+                  <span class="title">Aprovar Pend&ecirc;ncias</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-legal"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verForum, null)">
+                  <span class="title">F&oacute;rum</span>
+                </a>
+                <span class="icon-thumbnail"><i class="pg-social"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verBaseConhecimento, null)">
+                  <span class="title">Base de Conhecimento</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-database"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verBlog, null)">
+                  <span class="title">Blog</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-newspaper-o"></i></span>
+              </li>
+              <li ng-if="isPMO() || isAdministrador()">
+                <a ng-click="call(verProjetos, null)">
+                  <span class="title">Projetos</span>
+                </a>
+                <span class="icon-thumbnail"><i class="pg-layouts"></i></span>
+              </li>
+              <li ng-if="isAdministrador()">
+                <a ng-click="call(verTiposProjeto, null)">
+                  <span class="title">Tipos de Projetos</span>
+                </a>
+                <span class="icon-thumbnail"><i class="pg-layouts3"></i></span>
+              </li>
+              <li ng-if="isAdministrador()">
+                <a ng-click="call(verCalendarios, null)"><span class="title">Calend&aacute;rios</span></a>
+                <span class="icon-thumbnail"><i class="pg-calender"></i></span>
+              </li>
+              <li ng-if="isAdministrador()">
+                <a ng-click="call(verCentrosDeCusto, null)"><span class="title">Centros de custo</span></a>
+                <span class="icon-thumbnail"><i class="fa fa-cc"></i></span>
+              </li>
+              <li ng-if="isAdministrador()">
+                <a ng-click="call(verUsuarios, null)">
+                  <span class="title">Usu&aacute;rios</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-users"></i></span>
+              </li>
+              <li ng-if="isGerente() || isAdministrador()">
+                <a ng-click="call(agendarAtividadesRotineiras, null)">
+                  <span class="title">Atividades Rotineiras</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-wrench"></i></span>
+              </li>
+              <li ng-if="isAdministrador()">
+                <a ng-click="call(verAcessosFaceis, null)">
+                  <span class="title">Acesso F&aacute;cil</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-external-link"></i></span>
+              </li>
+            </ul>
+          </li>
+
+            <li ng-repeat="projeto in sidebarProjects.projetosDisponiveis">
+            <a href="javascript:;">
+              <span class="title">{{ projeto.nome }}</span>
+              <span class="arrow"></span>
+            </a>
+            <span class="icon-thumbnail"><i class="pg-form"></i></span>
+            <ul class="sub-menu">
+              <li>
+                <a ng-click="call(verMural, projeto.id)">
+                  <span class="title">Mural</span>
+                </a>
+                <span class="icon-thumbnail"><i class="pg-grid"></i></span>
+              </li>
+              <li ng-if="isRecurso()">
+                <a ng-click="call(verAtividades, projeto.id)">
+                  <span class="title">Atividades</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-tasks"></i></span>
+              </li>
+              <li ng-if="isProjectPMO(projeto.pmo.id)">
+                <a ng-click="call(verPendencias, projeto.id)">
+                  <span class="title">Pend&ecirc;ncias</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-exclamation"></i></span>
+              </li>
+              <li ng-if="isProjectPMO(projeto.pmo.id)">
+                <a ng-click="call(gerenciarAtividades, projeto.id)">
+                  <span class="title">Aprovar Pend&ecirc;ncias</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-legal"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verForum, projeto.id)">
+                  <span class="title">F&oacute;rum</span>
+                </a>
+                <span class="icon-thumbnail"><i class="pg-social"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verBaseConhecimento, projeto.id)">
+                  <span class="title">Base de Conhecimento</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-database"></i></span>
+              </li>
+              <li>
+                <a ng-click="call(verBlog, projeto.id)">
+                  <span class="title">Blog</span>
+                </a>
+                <span class="icon-thumbnail"><i class="fa fa-newspaper-o"></i></span>
+              </li>
+
+            </ul>
+          </li>
+        <li class="m-t-30 open">
+            <a ng-click="logout()">
+                <span class="title">Logout</span>
+            </a>
+            <span class="icon-thumbnail bg-danger"><i class="fa fa-sign-out"></i></span>
+        </li>
+        </ul>
+        <div class="clearfix"></div>
+      </div>
+    </div>

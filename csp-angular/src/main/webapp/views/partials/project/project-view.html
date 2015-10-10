@@ -1,0 +1,174 @@
+<div class="container-fluid" ng-controller="ProjectCreationController">
+	<h1>Visualizar Projeto</h1>
+	<div class="container-fluid container-fixed-lg bg-white p-b-20">
+	    <br>
+		<div class="panel panel-default">
+	    	<div class="panel-heading">
+	    		<h1 class="panel-title">Dados Básicos</h1>
+			</div>
+			<div class="panel-body">
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="col-md-4">
+						<label for="project-name">Projeto</label>
+						<input id="project-name" name="nome" type="text" class="form-control" ng-model="project.nome" disabled="true" />
+					</div>
+				</div>
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="col-md-4">
+						<label for="project-surname">Descrição</label>
+						<textarea id="project-surname" name="descricao" class="form-control" ng-model="project.descricao" disabled="true"></textarea>
+					</div>
+				</div>
+				
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="col-md-4">
+						<label for="project-tipo">Tipo de Projeto</label>
+						<input id="project-name" name="nome" type="text" class="form-control"  ng-model="project.tipo.nome" disabled="true"></input>
+					</div>
+				</div>
+	
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<div class="col-md-4">
+						<label for="inicioAlocacao">Data Início Alocação</label>
+						<input id="inicioAlocacao" name="inicioAlocacao" type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="project.inicioAlocacao" disabled="true"/>
+					</div>
+					<div class="col-md-4">
+						<label for="fimAlocacao">Data Fim Alocação</label>
+						<input id="fimAlocacao" name="fimAlocacao" type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="project.fimAlocacao" disabled="true"/>
+	            	</div>
+					<div class="col-md-4" valdr-form-group>
+						<label for="project-name">Quantidade de horas</label>
+						<input name="totalHoras" type="text" class="form-control" ng-model="project.totalHoras" disabled="true"/>
+					</div>
+				</div>
+				<div class="form-group m-t-25 col-md-12 p-l-0">
+					<div class="col-md-4">
+						<label for="project-PMO">PMO do Projeto</label><br>
+						<input id="project-name" name="pmo" type="text" class="form-control" ng-model="project.pmo.email" disabled="true"/>
+					</div>
+				</div>
+			</div>
+		</div>
+ 		
+ 		<div class="panel panel-default">
+	    	<div class="panel-heading">
+	    		<h1 class="panel-title">Alocações</h1>
+			</div>
+			<div class="panel-body">
+				<div class="form-group m-t-25 col-md-12" valdr-form-group>
+					<table class="table table-condensed">
+						<tr>
+							<th>Nome</th>
+							<th>Sobrenome</th>
+							<th>E-mail</th>
+							<th>Início Alocação</th>
+							<th>Fim Alocação</th>
+						</tr>
+						<tr ng-repeat="a in project.alocacoes">
+							<td class="assignment-table">{{a.colaborador.nome}}</td>
+							<td class="assignment-table">{{a.colaborador.sobrenome}}</td>
+							<td class="assignment-table">{{a.colaborador.email}}</td>
+							<td class="assignment-table">{{a.dataInicioAlocacao | date : 'dd/MM/yyyy'}}</td>
+							<td class="assignment-table">{{a.dataFimAlocacao | date : 'dd/MM/yyyy'}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+ 		
+ 		<div class="panel panel-default">
+	    	<div class="panel-heading">
+	    		<h1 class="panel-title">Calendário do Projeto</h1>
+			</div>
+			<div class="panel-body">
+				<div class="form-group m-t-25 col-md-12 p-l-0" valdr-form-group>
+					<label>Dias Trabalháveis</label>
+					<div class="checkbox check-success checkbox-circle">
+						<input type="checkbox" id="segundaFeira" name="segundaFeira" ng-model="project.calendario.segundaFeira" ng-disabled="true"/><label for="segundaFeira">Segunda-Feira</label>
+						<input type="checkbox" id="tercaFeira" name="tercaFeira" ng-model="project.calendario.tercaFeira" ng-disabled="true"/><label for="tercaFeira">Terça-Feira</label>
+						<input type="checkbox" id="quartaFeira" name="quartaFeira" ng-model="project.calendario.quartaFeira" ng-disabled="true"/><label for="quartaFeira">Quarta-Feira</label>
+						<input type="checkbox" id="quintaFeira" name="quintaFeira" ng-model="project.calendario.quintaFeira" ng-disabled="true"/><label for="quintaFeira">Quinta-Feira</label>
+						<input type="checkbox" id="sextaFeira" name="sextaFeira" ng-model="project.calendario.sextaFeira" ng-disabled="true"/><label for="sextaFeira">Sexta-Feira</label>
+						<input type="checkbox" id="sabado" name="sabado" ng-model="project.calendario.sabado" ng-disabled="true"/><label for="sabado">S&aacute;bado</label>
+						<input type="checkbox" id="domingo" name="domingo" ng-model="project.calendario.domingo" ng-disabled="true"/><label for="domingo">Domingo</label>
+					</div>
+				</div>
+	
+				<label class="m-t-15">Eventos do Projeto</label>
+				<div class="pull-right">
+					<div class="col-xs-12">
+						<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#event-modal" ng-disabled="true"><i class="fa fa-plus"></i> Novo Evento</button>
+					</div>
+				</div>
+				<table class="table table-condensed">
+					<tr>
+				    	<th>Evento</th>
+				    	<th>Data Início</th>
+				    	<th>Data Fim</th>
+				  	</tr>
+					<tr ng-repeat="e in project.calendario.eventos">
+						<td class="assignment-table">{{e.nome}}</td>
+						<td class="assignment-table">{{e.dataInicio | date : 'dd/MM/yyyy'}}</td>
+						<td class="assignment-table">{{e.dataFim | date : 'dd/MM/yyyy'}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+ 		
+ 		<div class="panel panel-default">
+	    	<div class="panel-heading">
+	    		<h1 class="panel-title">Atividades</h1>
+			</div>
+			<div class="panel-body">
+				<table class="table table-condensed">
+					<tr>
+						<th>Nome</th>
+						<th>Alocado para</th>
+						<th>Quantidade de horas</th>
+						<th>Data Início</th>
+						<th>Data Fim</th>
+					</tr>
+					<tr ng-repeat="a in project.atividades">
+						<td class="assignment-table">{{a.nome}}</td>
+						<td class="assignment-table">{{a.alocacoes[0].colaborador.email}}</td>
+						<td class="assignment-table">{{a.estimativa}}</td>
+						<td class="assignment-table">{{a.dataInicio | date : 'dd/MM/yyyy'}}</td>
+						<td class="assignment-table">{{a.dataFim | date : 'dd/MM/yyyy'}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+ 		<div class="panel panel-default">
+	    	<div class="panel-heading">
+	    		<h1 class="panel-title">Ações</h1>
+			</div>
+			<div class="panel-body">
+				<table>
+					<tr>
+						<th style=" padding: 5px;">
+							<button ng-if="!project.iniciado" type="button" class="btn btn-success" ng-click="iniciarProjeto()">
+								Iniciar
+							</button>
+						</th>
+						<th style=" padding: 5px;">
+							<button ng-if="project.iniciado" type="button" class="btn btn-danger" ng-click="cancelarProjeto()">
+								Cancelar
+							</button>
+						</th>
+						<th style=" padding: 5px;">
+							<button ng-if="project.iniciado" type="button" class="btn btn-primary" ng-click="concluirProjeto()">
+								Concluir
+							</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+ 		<div>
+ 			<div class="pull-left">
+	 			<botao-cancelar-voltar mostrar-cancelar="'true'"></botao-cancelar-voltar>
+	 		</div>
+ 		</div>
+ 		
+	</div>
+</div>

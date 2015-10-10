@@ -1,0 +1,13 @@
+<div class="panel-footer" ng-controller="PaginacaoController">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" title="Página Anterior" ng-click="paginaAnterior()" ng-disabled="paginaAtual() === 1">
+        	<i class="fa fa-chevron-circle-left"></i>
+        </button>
+       	<button type="button" class="btn btn-default" title="Ir Para Página" ng-click="irParaPagina(i)"  ng-repeat="i in range()" ng-class="{active: paginaAtual()===i}" >
+  	    	{{i}}
+ 		</button>
+        <button type="button" class="btn btn-default" title="Próxima Página" ng-click="proximaPagina()" ng-disabled="paginaAtual() >= totalDePaginas()">
+        	<i class="fa fa-chevron-circle-right"></i>
+        </button>
+    </div>
+</div>

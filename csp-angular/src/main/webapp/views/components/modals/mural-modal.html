@@ -1,0 +1,41 @@
+<div class="modal fade" id="mural-modal" ng-controller="MuralModalController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Editar Mensagem</h4>
+      </div>
+      <div class="modal-body">
+      		<form name="muralForm" novalidate valdr-type="Mensagem">
+ 			<div class="row">
+				<div class="col-md-12">
+					<label for="expirationDate">Mensagem expira no dia:</label>
+		            <p class="input-group" valdr-form-group>
+						<input id="expirationDate" type="text" class="form-control"
+							   datepicker-popup="dd/MM/yyyy"
+							   is-open="openedExpirationDate"
+							   style="width: 141px; display: inline-block;"
+							   close-text="Close"
+							   ng-model="expirationDate"
+							   name="dataCriacao"/>
+		              	<span class="input-group-btn"  style="display: inline-block; width: auto;">
+                    		<button type="button" class="btn btn-default" ng-click="openExpirationDate($event)">
+							<i class="glyphicon glyphicon-calendar"></i></button>
+                  		</span>
+		            </p>
+					
+					<div valdr-form-group>
+						<label for="writtenMessage">Mensagem:</label><br>
+						<textarea id="writtenMessage" name="mensagem" ng-model="writtenMessage" class="form-control"></textarea>
+					</div>
+		        </div>
+		    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" type="submit" ng-click="editMessage()">Salvar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
