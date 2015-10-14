@@ -19,6 +19,13 @@
             <type>ejb</type>
 			<scope>provided</scope>
         </dependency>
+       
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>csp-persistence</artifactId>
+            <type>ejb</type>
+			<scope>provided</scope>
+        </dependency>
         
         <dependency>
 		   <groupId>org.hibernate</groupId>
