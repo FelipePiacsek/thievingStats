@@ -1,13 +1,17 @@
 package br.com.puc.tcc.csp.locais.model;
 
+import static javax.persistence.FetchType.EAGER;
+
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name = "tb_bairros")
@@ -19,9 +23,9 @@ public class Bairro {
 
 	private String nome;
 	
-	private Integer cep;
-	
-	@OneToMany(mappedBy = "logradouro.bairro")
+	@OneToMany(fetch = EAGER)
+	@JoinColumn(name = "id_bairro")
+	@JsonManagedReference
 	private Set<Logradouro> logradouros;
 
 	public Set<Logradouro> getLogradouros() {
@@ -30,14 +34,6 @@ public class Bairro {
 
 	public void setLogradouros(Set<Logradouro> logradouros) {
 		this.logradouros = logradouros;
-	}
-
-	public Integer getCep() {
-		return cep;
-	}
-
-	public void setCep(Integer cep) {
-		this.cep = cep;
 	}
 
 	public String getNome() {

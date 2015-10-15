@@ -1,0 +1,73 @@
+<div class="container" ng-controller="ComponenteCalendarioController">
+	<form name="calendarioForm" novalidate valdr-type="Calendario">
+	    <div class="col-md-6" style="margin-left:150px;">
+	    	<div valdr-form-group ng-if="tela==='CALENDÁRIO'">
+				<label for="nome">Nome</label><br>
+				<input name="nome" type="text" class="form-control" style="width: 241px; display: inline-block;" ng-model="calendar.nome"/>
+			</div>
+			<br>
+			<br>
+			<div valdr-form-group ng-if="tela!=='USUÁRIO'">
+				<label>Dias Trabalháveis</label><br>
+				<input type="checkbox" style="width: 50px;" name="segundaFeira" ng-model="calendar.segundaFeira"/>Segunda-feira
+				<input type="checkbox" style="width: 50px;" name="tercaFeira" ng-model="calendar.tercaFeira"/>Terça-feira
+				<input type="checkbox" style="width: 50px;" name="quartaFeira" ng-model="calendar.quartaFeira"/>Quarta-feira
+				<input type="checkbox" style="width: 50px;" name="quintaFeira" ng-model="calendar.quintaFeira"/>Quinta-feira
+				<input type="checkbox" style="width: 50px;" name="sextaFeira" ng-model="calendar.sextaFeira"/>Sexta-feira
+				<input type="checkbox" style="width: 50px;" name="sabado" ng-model="calendar.sabado"/>Sábado
+				<input type="checkbox" style="width: 50px;" name="domingo" ng-model="calendar.domingo"/>Domingo
+			</div>
+			<div valdr-form-group>
+				<label for="calendarioBase">Calendário Base</label><br>
+				<select name="calendarioBase" ng-model="calendarioSelecionado" ng-options="c as c.nome for c in calendariosDisponiveis">
+					<option value="">Selecione um calendário</option>
+				</select>
+				<button  ng-click="adicionarCalendarioBase()"> 
+					>> 
+				</button>
+
+				<br>
+				<br>
+			</div>
+			<br>
+			<br>
+			<br><br><br>
+			<label>Eventos do calendário</label><br>
+			<table class="assignment-table">
+				<tr>
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Evento</th>
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Data Início</th> 
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Data Fim</th>
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Remover</th>
+			  	</tr>
+				<tr ng-repeat="e in calendar.eventos">
+					<td class="assignment-table" style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">{{e.nome}}</td>
+					<td class="assignment-table" style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">{{e.dataInicio | date : 'dd/MM/yyyy'}}</td>
+					<td class="assignment-table" style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">{{e.dataFim | date : 'dd/MM/yyyy'}}</td>
+					<td class="assignment-table"  style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">
+						<button class="btn btn-danger" style="size: 10px;" ng-click="removerEvento(e)"> 
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</td>
+				</tr>
+			</table>
+			<button data-toggle="modal" data-target="#event-modal"> 
+				+ Novo Evento 
+			</button>
+	
+			<div ng-if = "tela==='CALENDÁRIO'">
+				<br><br><br>
+				<button class="btn btn-primary margin-top float-right" ng-click="salvar()"> 
+					<span class="badge">
+						<span class="glyphicon glyphicon-plus"></span>
+					</span> Salvar 
+				</button>
+				<button class="btn btn-default" ng-click="voltar()">
+					Voltar
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</button>
+			</div>
+		</div>
+	</form>
+	<event-modal></event-modal>
+</div>

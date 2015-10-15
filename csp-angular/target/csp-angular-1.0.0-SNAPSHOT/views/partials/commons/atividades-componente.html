@@ -1,0 +1,74 @@
+<div class="container-fluid" ng-controller="AtividadesComponenteController">
+	<div  ng-if="perfil === 'SUPER'">
+		<h1 ng-if="mode === 'ROTINEIRA'">Aprovar Pendências de Atividades Rotineiras</h1>
+		<h1 ng-if="mode === 'PROJETO'">Aprovar Pendências de Atividades do Projeto</h1>
+	</div>
+	<div  ng-if="perfil === 'RECURSO'">
+		<h1 ng-if="mode === 'ROTINEIRA'">Atividades Rotineiras</h1>
+		<h1 ng-if="mode === 'PROJETO'">Atividades do Projeto</h1>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="panel-title">
+			</div>
+			<div class="pull-right" ng-if="mode === 'ROTINEIRA'">
+				<button type="button" class="btn btn-primary btn-cons" ng-click="atividadesAtuais()">Atuais</button>
+				<button type="button" class="btn btn-primary btn-cons" ng-click="atividadesConcluidas()">Concluídas</button>
+				<button type="button" class="btn btn-primary btn-cons" ng-click="atividadesHistorico()">Histórico</button>
+			</div>
+			<componente-filtragem></componente-filtragem>
+		</div>
+		<div class="panel-body"  ng-if="perfil === 'RECURSO'" ng-show="!atividades.length">
+			<div class="alert alert-danger" role="alert" ng-if="mode === 'ROTINEIRA'">Nenhuma Atividade Rotineira nesta data para este usuário!</div>
+			<div class="alert alert-danger" role="alert" ng-if="mode === 'PROJETO'">Nenhuma Atividade para este usuário!</div>
+		</div>
+		<div class="panel-body"  ng-if="perfil === 'SUPER'" ng-show="!atividades.length">
+			<div class="alert alert-danger" role="alert" ng-if="mode === 'ROTINEIRA'">Não existem Atividades Rotineiras de seus usuários gerenciados para esta data!</div>
+			<div class="alert alert-danger" role="alert" ng-if="mode === 'PROJETO'">Não existem Atividades para este projeto!</div>
+		</div>
+		<div class="panel-body" ng-show="atividades.length">
+			<table class="table table-hover">
+				<tr>
+					<th>Nome</th>
+					<th>Recurso</th>
+					<th>Estimativa</th>
+					<th>Horas Apontadas</th>
+					<th ng-show="mode === 'PROJETO'">Porcentagem</th>
+					<th>Data Início</th>
+					<th>Data Fim</th>
+					<th>Situação</th>
+					<th></th>
+				</tr>
+				<tr ng-repeat="a in atividades">
+					<td>{{a.nome}}</td>
+					<td>{{a.alocacoes[0].colaborador.email}}</td>
+					<td>{{a.estimativa}}</td>
+					<td>{{horasApontadas(a)}}</td>
+					<td ng-show="mode === 'PROJETO'">{{porcentagem(a)}}%</td>
+					<td>{{a.dataInicio | date : 'dd/MM/yyyy'}}</td>
+					<td>{{a.dataFim | date : 'dd/MM/yyyy'}}</td>
+					<td>{{a.situacao}}</td>
+					<td ng-if="perfil === 'RECURSO'">
+						<button data-toggle="modal" data-target="#apontamento-modal" ng-click="modalAdd(a)" ng-if="a.situacao === 'PENDENTE'"
+								title="Apontar Horas">
+							<span class="glyphicon glyphicon-plus"></span>
+						</button>
+					</td>
+					<td ng-if="perfil === 'SUPER'">
+						<button data-toggle="modal" data-target="#pendencias-modal" ng-click="modalPendencia(a)" ng-if="temPendenciasAtivas(a)" title="Verificar Pendências">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div ng-show="atividades.length > 0">
+			<botoes-paginacao></botoes-paginacao>
+		</div>
+	</div>
+
+	<apontamento-modal ng-if="perfil === 'RECURSO'"></apontamento-modal>
+	<pendencias-modal ng-if="perfil === 'SUPER'"></pendencias-modal>
+</div>
+<filtro-modal></filtro-modal>

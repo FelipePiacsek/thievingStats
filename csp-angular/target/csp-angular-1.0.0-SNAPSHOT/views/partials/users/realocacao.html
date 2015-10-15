@@ -1,0 +1,70 @@
+<div class="container-fluid p-b-20" ng-controller="RealocacaoController">
+	<h3>Tela de realocação de {{user.nome}} {{user.sobrenome}}.</h3> 
+
+	{{mensagem()}}
+	<br><br><br><br><br>
+	<div ng-if="realocacoesPendentes()">
+		<div ng-if="recursosGerenciados">
+			<h1>Recursos gerenciados.</h1>
+			<div ng-repeat="g in recursosGerenciados">
+				<div ng-if="exibicaoRecursos[g.id]">
+					{{g.nome}}
+					<select class="form-control" id="gerente" name="gerente" ng-model="novosGerentes[g.id]" ng-options="g.id as g.nome for g in gerentesDisponiveis" >
+							<option value="">Selecione um novo gerente</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<br><br><br><br><br>
+		<div ng-if="projetosCoordenados">
+			<h1>Projetos coordenados.</h1>
+			<div ng-repeat="p in projetosCoordenados">
+				<div ng-if="exibicaoProjetosCoordenados[p.id]">
+					{{p.nome}} -> {{p.descricao}}
+					<select class="form-control" id="pmo" name="pmo" ng-model="novosPMOs[p.id]" ng-options="p.id as p.nome for p in PMOsDisponiveis" >
+							<option value="">Selecione um novo PMO</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<br><br><br><br><br>
+		<div ng-if="projetosParticipantes">
+			<h1>Projetos participantes.</h1>
+			<div ng-repeat="p in projetosParticipantes">
+				<div ng-if="p.atividades.length > 0">
+					<h2>Atividades do projeto {{p.nome}}.</h2>
+					<div ng-repeat="a in p.atividades">
+						<div ng-if="exibicaoAtividadesProjeto[a.id]">
+							{{a.nome}}
+							<select class="form-control" id="recursoProjeto" name="recursoProjeto" ng-model="novosRecursosAtividadesProjeto[a.id]" ng-options="r.colaborador.id as r.colaborador.nome for r in p.alocacoes">
+									<option value="">Selecione um novo recurso para esta atividade de projeto</option>
+							</select>
+						</div>
+						
+					</div>
+				</div>			
+			</div>
+		</div>
+		
+		<br><br><br><br><br>
+		<div ng-if="geradoresAtividadesRotineiras.length > 0">
+			<h1>Atividades rotineiras.</h1>
+			<div ng-repeat="a in geradoresAtividadesRotineiras">
+				<div ng-if="exibicaoGeradores[a.id]">
+					{{a.nome}}
+					<select class="form-control" id="recursoAtividadeRotineira" name="recursoAtividadeRotineira" ng-model="novosRecursosAtividadesRotineiras[a.id]" ng-options="r.colaborador.id as r.nome for r in recursosDisponiveisAtividadesRotineiras[a.id]">
+							<option value="">Selecione um novo recurso para esta atividade rotineira</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<button type="button" class="btn btn-default" ng-click="voltar()">
+		Voltar
+	</button>
+	
+	<button type="button" class="btn btn-default" ng-click="salvar()" ng-if="realocacoesPendentes()">
+		Salvar
+	</button>
+</div>

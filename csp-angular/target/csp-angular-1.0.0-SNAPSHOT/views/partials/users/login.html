@@ -1,0 +1,45 @@
+﻿<div class="login-wrapper " ng-controller="LoginController">
+	<div class="bg-pic">
+		<div ng-include src=" 'views/partials/commons/mural-publico.html' " include-replace></div>
+	</div>
+	<div class="login-container bg-white">
+		<div class="p-l-50 m-l-20 p-r-50 m-r-20 sm-p-l-15 sm-p-r-15">
+			<h5 class="p-t-35">Entrar na área restrita {{current.name}}</h5>
+			<form id="form-login" name="loginForm" class="p-t-15" role="form">
+				<div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : invalidLogin }">
+					<label>Usuário</label>
+					<div class="controls">
+						<input type="text" id="email" name="email" placeholder="" class="form-control" ng-model="attemptLogin.usuario.email" required>
+					</div>
+				</div>
+				<label class="error" for="email" ng-show="invalidLogin">*Informe seu usuário.</label>
+				<div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : invalidLogin }">
+					<label>Senha</label>
+					<div class="controls">
+						<input type="password" class="form-control" id="senha" name="senha" placeholder="" ng-model="attemptLogin.usuario.senha" required>
+					</div>
+				</div>
+				<label class="error" for="senha"  ng-show="invalidLogin">*Informe sua senha.</label>
+				<div class="row">
+					<div class="col-md-6 no-padding">
+						<div class="checkbox ">
+							<input type="checkbox" value="1" id="checkbox1" name="lembrar" ng-model="attemptLogin.lembrarLogin">
+							<label for="checkbox1">Lembre-me</label>
+						</div>
+					</div>
+					<div class="col-md-6 text-right">
+						<a href="" class="text-info small" data-toggle="modal" data-target="#senha-modal">Esqueci minha senha</a>
+					</div>
+				</div>
+				<button class="btn btn-primary btn-cons m-t-10" ng-click="doLogin()" type="submit">Login</button>
+			</form>
+		</div>
+		<div class="p-l-50 m-l-20 p-r-50 m-r-20 sm-p-l-15 sm-p-r-15" ng-show="acessosFaceis.length">
+			<h5 class="p-t-35">Acesso F&aacute;cil</h5>
+			<ul class="no-style">
+				<li ng-repeat="acesso in acessosFaceis"><a href="{{acesso.url}}" >{{acesso.exibicao}}</a></li>
+			</ul>
+		</div>
+	</div>
+	<senha-modal></senha-modal>
+</div>

@@ -1,0 +1,46 @@
+<div class="modal fade" id="base-conhecimento-modal" ng-controller="KnowledgeBaseModalController">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Adicionar</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" ng-hide="hideradio">
+                    <div class="col-md-12">
+                        <div>
+                            <input ng-hide="hideradio" type="radio" ng-model="novoTipoDiretorio" ng-value="true">Diret&oacute;rio</input>
+                            <input ng-hide="hideradio" type="radio" ng-model="novoTipoDiretorio" ng-value="false">Arquivo</input>
+                        </div>
+                    </div>
+                </div>
+                <form name="dirForm" novalidate ng-show="novoTipoDiretorio" valdr-type="ArquivoBaseConhecimento">
+                    <div class="row" style="margin-top: 4px;">
+                        <div class="col-md-12" valdr-form-group>
+                            <input type="text" class="form-control" ng-model="nome" id="nome" name="nome">
+                        </div>
+                    </div>
+                </form>
+                <form name="fileForm" novalidate ng-hide="novoTipoDiretorio">
+                    <div class="row" style="margin-top: 4px;">
+                        <div class="col-md-12">
+                            <input type="file" ngf-select="" ng-model="picFile" name="file" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4px;">
+                        <div class="col-md-12">
+                            <label for="selecionado">Tags</label>
+                            <tags-input placeholder="Adicionar uma tag" ng-model="tags" display-property="texto" min-tags="1">
+                                <auto-complete select-first-match="false" source="loadTags($query)"></auto-complete>
+                            </tags-input>
+                         </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button class="btn btn-primary" type="submit" ng-click="novoTipoDiretorio == true ? dirForm.$valid && criarDiretorio() : fileForm.$valid && criarArquivo()">Salvar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

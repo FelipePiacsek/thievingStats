@@ -1,0 +1,47 @@
+<div class="container-fluid" ng-controller="CentroDeCustoComponenteController">
+    <!-- Nested node template -->
+    <script type="text/ng-template" id="nodes_renderer.html">
+        <button class="btn btn-default btn-xs no-border" ng-if="!isFolderExpanded(node) && !maxParents(node)" ng-click="expand(node)">
+            <i class="fa fa-caret-right"></i>
+        </button>
+
+        <button class="btn btn-default btn-xs no-border" ng-if="isFolderExpanded(node) && !maxParents(node)" ng-click="retain(node)">
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <button class="btn btn-default btn-xs no-border" disabled ng-if="maxParents(node)">
+            <i class="fa fa-ban"></i>
+        </button>
+        {{node.exibicao}} : {{node.descricao}}
+
+        <div class="btn-group m-l-20">
+            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#centro-de-custo-modal" ng-click="modalAdd(node, 'READ')" >
+                <i class="pg pg-search"></i>
+            </button>
+            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#centro-de-custo-modal" ng-click="modalAdd(node, 'UPDATE')"  ng-if="mode === 'EDITION'">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#centro-de-custo-modal" ng-click="modalAdd(node, 'CREATE')"  ng-if="mode === 'EDITION' && !maxParents(node)">
+                <i class="pg pg-plus" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-danger btn-xs" ng-click="deletarRecurso(node.id)"  ng-if="mode === 'EDITION'">
+                <i class="fa fa-trash-o"></i>
+            </button>
+            <button class="btn btn-success btn-xs" ng-click="selecionarCentro(node)"  ng-if="mode === 'SELECTION'">
+                <i class="fa fa-check"></i>
+            </button>
+        </div>
+
+        <ul class="no-style" ng-if="node.filhos.length > 0">
+            <li ng-repeat="node in node.filhos" class="m-t-10" data-id="{{node.id}}" ng-include="'nodes_renderer.html'">
+            </li>
+        </ul>
+    </script>
+    <div class="">
+        <ul class="no-style">
+            <li ng-repeat="node in centrosDeCusto" class="m-t-10" data-id="{{node.id}}" ng-include="'nodes_renderer.html'"></li>
+        </ul>
+    </div>
+    <div ng-show="centrosDeCusto.length > 0">
+    	<botoes-paginacao></botoes-paginacao>
+    </div>
+</div>

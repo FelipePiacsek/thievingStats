@@ -19,13 +19,13 @@ public class LogradouroResource {
 
 	@Inject
 	private LogradouroService service;
-	
+
 	@GET
-    @Path("all/")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
+	@Path("all/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAll() {
 		List<Logradouro> logradouros = service.getAll();
-        ResponseBuilder buider = Response.ok().entity(logradouros);
-        return buider.build();
-    }
+		ResponseBuilder buider = Response.ok().entity(logradouros);
+		return buider.build();
+	}
 }

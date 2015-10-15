@@ -1,0 +1,72 @@
+<div class="jumbotron"  ng-controller="MuralController">
+    <div class="container-fluid sm-p-l-20 sm-p-r-20">
+        <div class="inner">
+            <h1>Mural de mensagens</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">Nova mensagem pública</div>
+                </div>
+                <div class="panel-body">
+
+                    <form name="muralForm" ng-submit="addMessage()" novalidate valdr-type="Mensagem">
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-9">
+                                <div class="form-group" valdr-form-group>
+                                    <label>Mensagem expira no dia</label>
+                                    <div id="datepicker-component" class="input-group date col-sm-12" ui-jq="datepicker">
+                                        <input id="expirationDate" type="text" class="form-control"
+                                               name="dataExpiracao"
+                                               datepicker-popup="dd/MM/yyyy"
+                                               is-open="openedExpirationDate"
+                                               close-text="Close"
+                                               ng-model="dataExpiracao"/>
+                                        <span class="input-group-addon" ng-click="openExpirationDate($event)"><i class="fa fa-calendar"></i></span>
+                                        <input type="hidden" name="dataCriacao" value="x" valdr-enabled="false"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group" valdr-form-group>
+                                    <label for="writtenMessage">Nova mensagem pública</label>
+                                    <input type="text" id="writtenMessage" name="mensagem" ng-model="writtenMessage" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary margin-top float-right">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 post-it-empty-frame" ng-show="!mensagens.length">
+        <div class="alert alert-danger" role="alert">Nenhuma mensagem no mural!</div>
+    </div>
+    <div class="col-md-12" ng-show="mensagens.length">
+        <div class="col-md-3" ng-repeat="mensagem in mensagens">
+            <div pg-portlet class="panel panel-default bg-primary" id="portlet-basic">
+                <div class="panel-heading ">
+                	<div class="panel-title">
+                		{{mensagem.usuario.email}}
+                	</div>
+                    <div class="panel-controls">
+                        <ul>
+                            <li><a href="" ng-if="proprio(mensagem)" ng-click="editMessage(mensagem)" data-toggle="modal" data-target="#mural-modal" class="white"><i class="fa fa-pencil"></i></a>
+                            </li>
+                            <li><a href="" ng-if="proprio(mensagem) || isAdministrador()" ng-click="deleteMessage(mensagem)" data-toggle="close" class="white"><i class="fa fa-trash"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <p>{{mensagem.texto}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="mensagens.length">
+	    <botoes-paginacao></botoes-paginacao>
+    </div>
+    <mural-modal></mural-modal>
+</div>

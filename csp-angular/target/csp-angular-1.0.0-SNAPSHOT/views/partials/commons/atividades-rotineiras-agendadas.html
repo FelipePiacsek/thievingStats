@@ -1,0 +1,48 @@
+<div ng-class="(mode === 'UPDATE') ? 'container-fluid' : ''" ng-controller="AtividadesRotineirasAgendadasController">
+	<h1 ng-show="mode === 'UPDATE'">Remover Aditividades Agendadas</h1>
+	<div ng-show="mode === 'UPDATE'" class="container-fluid bg-white p-b-20 p-t-20">
+		<label for="dataInicio">Data Início</label>
+		<input id="dataInicio" name="dataInicio" ng-readonly="true" type="text" style="width: 141px; display: inline-block;"
+							 class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="dataInicio" />
+							 
+		<label for="dataInicio">Data Fim</label>
+		<input id="dataInicio" name="dataInicio" ng-readonly="true" type="text" style="width: 141px; display: inline-block;"
+							 class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="dataFim" />
+							 
+		<label>Periodicidade</label>
+		<input name="periodicidade" class="form-control" type="text" style="width: 141px; display: inline-block;" ng-readonly="true" ng-model="periodicidade" />
+					
+	</div>
+	<div class="form-group m-t-25" ng-show="!atividades.length">
+		Nenhuma Atividade Agendada.
+	</div>
+	<div class="form-group m-t-25" ng-show="atividades.length">
+		<table class="table table-hover">
+			<tr>
+				<th>Nome</th>
+				<th>Estimativa</th>
+				<th>Data Início</th>
+				<th>Data Fim</th>
+				<th>Situação</th>
+				<th ng-show="mode === 'UPDATE'">Remover</th>
+			</tr>
+			<tr ng-repeat="a in atividades">
+				<td>{{a.nome}}</td>
+				<td>{{a.estimativa}}</td>
+				<td>{{a.dataInicio | date : 'dd/MM/yyyy'}}</td>
+				<td>{{a.dataFim | date : 'dd/MM/yyyy'}}</td>
+				<td>{{a.situacao}}</td>
+				<td ng-show="mode === 'UPDATE'">
+					<button ng-click="adicionaAlistaExclusao(a)" ng-if="a.situacao === 'AGENDADA'"> 
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</td>
+			</tr>
+		</table>
+		<botoes-paginacao></botoes-paginacao>
+	</div>
+	<div class="modal-footer" ng-if="mode === 'UPDATE'">
+        <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+      	<button type="button" class="btn btn-primary" type="submit" ng-click="atualizar()">Atualizar</button>
+      </div>
+</div>

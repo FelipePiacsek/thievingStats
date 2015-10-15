@@ -1,11 +1,15 @@
 package br.com.puc.tcc.csp.locais.model;
 
+import static javax.persistence.FetchType.EAGER;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
@@ -20,7 +24,7 @@ public class Logradouro {
 	
 	private Integer cep;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_bairro")
 	private Bairro bairro;
 

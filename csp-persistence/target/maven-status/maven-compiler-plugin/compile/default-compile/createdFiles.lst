@@ -1,0 +1,6 @@
+br\com\puc\tcc\csp\locais\repository\EntityManagerProducer.class
+br\com\puc\tcc\csp\locais\repository\LogradouroRepository.class
+br\com\puc\tcc\csp\locais\model\Logradouro.class
+br\com\puc\tcc\csp\locais\model\Bairro_.class
+br\com\puc\tcc\csp\locais\model\Bairro.class
+br\com\puc\tcc\csp\locais\model\Logradouro_.class

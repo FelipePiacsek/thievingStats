@@ -1,0 +1,9 @@
+<div ng-controller="FiltragemController">
+	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#filtro-modal">
+		<span class="glyphicon glyphicon-filter" aria-hidden="true">Filtrar</span>
+	</button>
+	<button class="btn btn-xs" type="button"
+			ng-click="removerFiltro(filtro)" ng-repeat="filtro in filtros" style="margin-right: 1px; border: #000000; border-style: solid; border-width: 1px;">
+		{{filtro.exibicao}}
+	</button>
+</div>

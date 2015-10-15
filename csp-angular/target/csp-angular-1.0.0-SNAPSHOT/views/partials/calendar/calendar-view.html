@@ -1,0 +1,31 @@
+<div class="container" ng-controller="CalendarCreationController">
+	<form name="calendarioForm" novalidate valdr-type="Calendario">
+ 		<div class="col-md-12">
+			<div class="alert alert-danger" role="alert" ng-if="invalidMessage !== ''">{{invalidMessage}}</div>
+	    </div>
+	    <div class="col-md-6" style="margin-left:150px;">
+	    	<div valdr-form-group>
+				<label for="calendar-name">Nome</label><br>
+				<input name="nome" type="text" class="form-control" style="width: 241px; display: inline-block;" ng-model="calendar.nome" disabled="true"/>
+			</div>
+			<br>
+			<label for="project-calendar">Eventos</label><br>
+			<table class="assignment-table">
+				<tr>
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Evento</th>
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Data Início</th> 
+			    	<th style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">Data Fim</th>
+			  	</tr>
+				<tr ng-repeat="e in calendar.eventos">
+					<td class="assignment-table" style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">{{e.nome}}</td>
+					<td class="assignment-table" style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">{{e.dataInicio | date : 'dd/MM/yyyy'}}</td>
+					<td class="assignment-table" style=" padding: 5px; border: 1px solid black; border-collapse: collapse;">{{e.dataFim | date : 'dd/MM/yyyy'}}</td>
+				</tr>
+			</table>
+	
+			<br><br><br>
+			<botao-cancelar-voltar mostrar-voltar="'true'"></botao-cancelar-voltar>
+			<event-modal></event-modal>
+		</div>
+	</form>
+</div>
