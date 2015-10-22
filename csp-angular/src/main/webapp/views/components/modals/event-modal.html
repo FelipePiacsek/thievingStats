@@ -1,0 +1,50 @@
+<div class="modal fade" id="event-modal" ng-controller="EventModalController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Adicionar evento ao calendário</h4>
+      </div>
+      <div class="modal-body" id="modalManageLogWork">
+      	<form name="eventModalForm" novalidate valdr-type="Evento">
+ 			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-danger" role="alert" ng-if="invalidMessage !== ''">{{invalidMessage}}</div>
+
+					<div valdr-form-group>
+						<label for="nome">Evento</label><br>
+						<input type="text" id="nome" name="nome" class="form-control" ng-model="evento" />
+					</div>
+			
+					<div valdr-form-group>
+						<label for="dataInicio">Data Início</label>
+			            <p class="input-group">
+			              <input type="text" id="dataInicio" name="dataInicio" class="form-control" datepicker-popup="dd/MM/yyyy"
+			              		ng-model="dataInicio" is-open="openedDataInicio" close-text="Close" />
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="openDataInicio($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+		            </div>
+		            
+		            <div valdr-form-group>
+						<label for="dataFim">Data Fim</label>
+			            <p class="input-group">
+			              <input type="text" id="dataFim" name="dataFim" class="form-control" datepicker-popup="dd/MM/yyyy"
+			              		ng-model="dataFim" is-open="openedDataSelecionada" close-text="Close" />
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="openDataSelecionada($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+		            </div>
+		        </div>
+		    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" type="submit" ng-click="adicionar()">Adicionar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,53 @@
+<div class="modal fade" id="pendencias-modal" ng-controller="PendenciasModalController">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Pendências Relacionadas à Atividade</h4>
+			</div>
+			<div class="modal-body">
+				<div>
+					<label for="atividade">Atividade:</label> <input id="atividade"
+						ng-readonly="true" name="atividade" type="text"
+						class="form-control" ng-model="atividade.nome" />
+				</div>
+				<br>
+				<div>
+					<label for="data">Pendências:</label>
+				</div>
+				<div class="row" ng-repeat="p in atividade.pendencias">
+					<div class="col-md-12" ng-if="p.usuario == null">
+						<form name="pendenciasForm">
+							<div>
+								<label for="motivo">Motivo:</label> <input id="motivo"
+									name="motivo" ng-readonly="true" type="text" class="form-control" value="{{motivo(p)}}" />
+							</div>
+							<div>
+								<label for="data">Data:</label> <input id="motivo"
+									name="data" ng-readonly="true" type="text" class="form-control" value="{{p.apontamentoAtividade.data | date : 'dd/MM/yyyy'}}" />
+							</div>
+							<div>
+								<label for="justificativa">Justificativa:</label> <input
+									id="justificativa" name="justificativa" ng-readonly="true"
+									type="text" class="form-control" ng-model="p.apontamentoAtividade.comentario" />
+							</div>
+							<div>
+								<label for="comentario">Comentário:</label><br>
+								<textarea id="comentario" name="comentario" ng-model="p.comentario" class="form-control" required></textarea>
+							</div>
+							<div>
+								<button type="button" class="btn btn-primary" type="button" ng-click="confirmar(p)">Confirmar</button>
+							</div>
+							<br>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>

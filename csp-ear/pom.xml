@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+		<groupId>puc-tcc</groupId>
+		<artifactId>csp</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>csp-ear</artifactId>
+	<packaging>ear</packaging>
+
+    <name>CSP EAR Module</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>csp-rest</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>csp-angular</artifactId>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>csp-business</artifactId>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>csp-persistence</artifactId>
+            <type>ejb</type>
+        </dependency>            
+
+    </dependencies>
+
+	<build>
+        <finalName>csp</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <version>6</version>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <modules>
+                        <webModule>
+                            <groupId>puc-tcc</groupId>
+                            <artifactId>csp-rest</artifactId>
+                            <contextRoot>/csp-resources</contextRoot>
+                        </webModule>
+                        <webModule>
+                            <groupId>puc-tcc</groupId>
+                            <artifactId>csp-angular</artifactId>
+                            <contextRoot>/csp</contextRoot>
+                        </webModule>
+                    </modules>
+                    <archive>
+                        <manifestEntries>                            
+                            <Dependencies>org.codehaus.jackson.jackson-jaxrs org.codehaus.jackson.jackson-mapper-asl, org.jboss.resteasy.resteasy-jackson-provider, org.jboss.resteasy.resteasy-jaxb-provider, org.jboss.resteasy.resteasy-jaxrs, org.jboss.resteasy.resteasy-multipart-provider, org.jboss.resteasy.resteasy-atom-provider, org.jboss.resteasy.resteasy-cdi, org.jboss.resteasy.resteasy-jettison-provider, org.jboss.resteasy.resteasy-jsapi, org.jboss.resteasy.resteasy-yaml-provider, org.apache.commons.lang, org.apache.commons.io, org.apache.commons.collections, org.joda.time</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

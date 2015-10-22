@@ -1,0 +1,66 @@
+<div class="modal fade" id="atividade-modal" ng-controller="ProjectActivityModalController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" ng-if="!atividadeDepreciada">Adicionar atividade ao projeto</h4>
+        <h4 class="modal-title" ng-if="atividadeDepreciada">Depreciar atividade do projeto</h4>
+      </div>
+      <div class="modal-body">
+      		<form name="atividadeForm" novalidate valdr-type="Atividade">
+ 			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-danger" role="alert" ng-if="invalidMessage !== ''">{{invalidMessage}}</div>
+					<div valdr-form-group>
+						<label>Atividade</label><br>
+						<input name="nome" type="text" class="form-control" ng-model="nome" />
+					</div>
+			
+					<div valdr-form-group>
+						<label>Estimativa</label><br>
+						<input name="estimativa" type="text" class="form-control" ng-model="estimativa" />
+					</div>
+					
+					<div ng-if="atividadeDepreciada">
+						<label>Alocada Para</label><br>
+						<input name="alocadaPara" ng-readonly="true" type="text" class="form-control" ng-model="usuarioSelecionado.colaborador.usuario.email" />
+					</div>
+					
+					<div valdr-form-group>
+						<label ng-if="!atividadeDepreciada">Alocar para</label><br>
+						<label ng-if="atividadeDepreciada">Trocar Alocação para</label><br>
+						<select name="recursoSelecionado" ng-model="usuarioSelecionado" ng-options="u as u.colaborador.email for u in usuariosDisponiveis">
+							<option value="">Selecione um colaborador</option>
+						</select><br>
+					</div>
+					
+					<div valdr-form-group>
+						<label for="date">Data Início</label>
+			            <p class="input-group">
+			              <input name="dataInicio" type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="dataInicio" is-open="openedDataInicio" close-text="Close"/>
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="openDataInicio($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+		            </div>
+		            
+		            <div valdr-form-group>
+						<label for="date">Data Fim</label>
+			            <p class="input-group">
+			              <input name="dataFim" type="text" class="form-control" datepicker-popup="dd/MM/yyyy" ng-model="dataFim" is-open="openedDataFim" close-text="Close"/>
+			              <span class="input-group-btn">
+			                <button type="button" class="btn btn-default" ng-click="openDataFim($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+			              </span>
+			            </p>
+		            </div>
+		        </div>
+		    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" type="submit" ng-click="adicionar()">Adicionar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,27 @@
+<div class="modal fade" id="senha-modal" ng-controller="SenhaModalController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Esqueci Minha Senha</h4>
+      </div>
+      <div class="modal-body">
+      		<h4>Informe seu e-mail e um link para resetar a senha será enviado para ele.</h4>
+      		<form name="forumForm" novalidate>
+ 			<div class="row">
+                <div class="col-md-12">
+                	<div>
+	                    <label for="email">E-mail:</label>
+	                    <input type="text" class="form-control" ng-model="email" id="email" name="email">
+					</div>
+                </div>
+		    </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" type="submit" ng-click="requisitar()">Confirmar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
