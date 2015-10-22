@@ -6,8 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import br.com.puc.tcc.csp.locais.model.Logradouro;
-import br.com.puc.tcc.csp.locais.repository.LogradouroRepository;
+import br.com.puc.tcc.csp.model.locais.Logradouro;
+import br.com.puc.tcc.csp.repository.locais.LogradouroRepository;
 
 /**
  * Classe de negócios referente aos logradouros.
@@ -21,5 +21,9 @@ public class LogradouroService{
 	
 	public List<Logradouro> getAll(){
 		return repository.fetchAll();
+	}
+
+	public Logradouro getLogradouro(String cep) {
+		return repository.fetchLogradouroByCep(cep);
 	}
 }

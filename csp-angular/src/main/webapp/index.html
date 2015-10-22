@@ -2,44 +2,30 @@
 <html class="custom-height">
     <head>
         <meta charset="utf-8">
-<!--     	<meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Nextel</title>
+        <title>Criminalidade São Paulo</title>
         <!--<link href="styles/main.css" rel="stylesheet">-->
-        <link href="styles/components/dashboard.css?v=${git.commit.id}" rel="stylesheet">
-        <link href="styles/components/login.css?v=${git.commit.id}" rel="stylesheet">
-        <link rel="stylesheet" href="styles/components/modal.css?v=${git.commit.id}" />
-        <link rel="stylesheet" href="styles/vendor/alertify.default.css?v=${git.commit.id}" id="toggleCSS" />
-        <link rel="stylesheet" href="styles/vendor/alertify.core.css?v=${git.commit.id}" />
-        <link rel="stylesheet" href="styles/vendor/spectrum.css?v=${git.commit.id}" />
+        <link rel="stylesheet" href="styles/components/modal.css" />
+        <link rel="stylesheet" href="styles/vendor/alertify.default.css" id="toggleCSS" />
+        <link rel="stylesheet" href="styles/vendor/alertify.core.css" />
+        <link rel="stylesheet" href="styles/vendor/spectrum.css" />
 
-        <link rel="stylesheet" href="styles/vendor/ng-tags-input.min.css?v=${git.commit.id}" />
 
-        <link rel="icon" href="favicon.ico?v=${git.commit.id}" />
+        <link rel="icon" href="favicon.ico" />
         <!-- BEGIN Template CSS-->
-        <!--<link href="plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />-->
-        <link href="plugins/boostrapv3/css/bootstrap.min.css?v=${git.commit.id}" rel="stylesheet" type="text/css" />
-        <link href="plugins/font-awesome/css/font-awesome.css?v=${git.commit.id}" rel="stylesheet" type="text/css" />
-        <link href="plugins/jquery-scrollbar/jquery.scrollbar.css?v=${git.commit.id}" rel="stylesheet" type="text/css" media="screen" />
-        <link href="plugins/bootstrap-datepicker/css/datepicker3.css?v=${git.commit.id}" rel="stylesheet" type="text/css" media="screen" />
-        <link href="plugins/bootstrap-select2/select2.css?v=${git.commit.id}" rel="stylesheet" type="text/css" media="screen" />
-        <link href="plugins/angular-ui-select/select.min.css?v=${git.commit.id}" rel="stylesheet" type="text/css" media="screen" />
-        <!--<link id="lazyload_placeholder">-->
-        <link href="styles/pages-icons.css?v=${git.commit.id}" rel="stylesheet" type="text/css">
-        <link class="main-stylesheet" href="styles/themes/nextel.css?v=${git.commit.id}" rel="stylesheet" type="text/css" />
-        <!--[if lte IE 9]>
-        <link href="pages/css/ie9.css?v=${git.commit.id}" rel="stylesheet" type="text/css" />
-        <![endif]-->
+        <link href="plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="plugins/angular-ui-select/select.min.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="styles/pages-icons.css" rel="stylesheet" type="text/css">
     </head>
-    <body ng-app="nextel" class="fixed-header" ng-class="{'menu-pin sidebar-visible' : !plainTemplate()}">
+    <body ng-app="csp" class="fixed-header">
 
         <!--<div class="full-height" ui-view></div>-->
         <!--<div ng-include src=" 'views/partials/blocks/sidebar.html' "></div>-->
-        <div sidebar></div>
         <div class="page-container">
-            <div ng-if="plainTemplate()" ng-include=" 'views/partials/blocks/header-empty.html' "></div>
-            <div ng-if="!plainTemplate()" ng-include=" 'views/partials/blocks/header.html' "></div>
             <div class="page-content-wrapper">
                 <div class="content">
                     <div class="full-height full-width" ui-view>
@@ -49,164 +35,53 @@
         </div>
         <!-- JS Imports -->
         <!-- Template -->
-        <!-- todo: Adicionar e remover os desnecessários de acordo com a necessidade-->
-        <!--<script src="plugins/pace/pace.min.js" type="text/javascript"></script>-->
-        <script src="plugins/jquery/jquery-1.11.1.min.js?v=${git.commit.id}" type="text/javascript"></script>
-        <script src="plugins/modernizr.custom.js?v=${git.commit.id}" type="text/javascript"></script>
-        <script src="plugins/jquery-ui/jquery-ui.min.js?v=${git.commit.id}" type="text/javascript"></script>
-        <script src="plugins/boostrapv3/js/bootstrap.min.js?v=${git.commit.id}" type="text/javascript"></script>
-        <script src="plugins/jquery/jquery-easy.js?v=${git.commit.id}" type="text/javascript"></script>
-        <!--<script src="plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>-->
-        <!--<script src="plugins/jquery-bez/jquery.bez.min.js"></script>-->
-        <!--<script src="plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>-->
-        <!--<script src="plugins/jquery-actual/jquery.actual.min.js"></script>-->
-        <script src="plugins/jquery-scrollbar/jquery.scrollbar.min.js?v=${git.commit.id}"></script>
-        <script type="text/javascript" src="plugins/classie/classie.js?v=${git.commit.id}"></script>
-        <script src="plugins/bootstrap-datepicker/js/bootstrap-datepicker.js?v=${git.commit.id}" type="text/javascript"></script>
+        <script src="plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+        <script src="plugins/modernizr.custom.js" type="text/javascript"></script>
+        <script src="plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="plugins/boostrapv3/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="plugins/jquery/jquery-easy.js" type="text/javascript"></script>
+        <script src="plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+        <script type="text/javascript" src="plugins/classie/classie.js"></script>
+        <script src="plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
 
         <!-- Defaults -->
         <!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>-->
-        <script src="scripts/vendor/angular.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/angular-animate.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/angular-resource.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/angular-ui-router.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/angular-jwt.min.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/ngStorage.min.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/ngResource.js?v=${git.commit.id}"></script>
-        <!--<script src="scripts/vendor/bootstrap.js"></script>-->
-        <script src="scripts/vendor/pages.js?v=${git.commit.id}" type="text/javascript"></script>
+        <script src="scripts/vendor/angular.js"></script>
+        <script src="scripts/vendor/angular-animate.js"></script>
+        <script src="scripts/vendor/angular-resource.js"></script>
+        <script src="scripts/vendor/angular-ui-router.js"></script>
+        <script src="scripts/vendor/ngStorage.min.js"></script>
+        <script src="scripts/vendor/ngResource.js"></script>
+        <script src="scripts/vendor/pages.js" type="text/javascript"></script>
 
-        <script src="scripts/vendor/alertify.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/ui-bootstrap-tpls-0.12.1.min.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/valdr.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/valdr-message.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/jquery.nestable.js?v=${git.commit.id}"></script>
+        <script src="scripts/vendor/alertify.js"></script>
+        <script src="scripts/vendor/ui-bootstrap-tpls-0.12.1.min.js"></script>
+        <script src="scripts/vendor/jquery.nestable.js"></script>
 
 
-        <script src="scripts/vendor/ng-tags-input.min.js?v=${git.commit.id}"></script>
-        <script src="scripts/vendor/moment.js?v=${git.commit.id}"></script>
+        <script src="scripts/vendor/ng-tags-input.min.js"></script>
+        <script src="scripts/vendor/moment.js"></script>
 
-        <script src="plugins/angular-ui-select/select.min.js?v=${git.commit.id}" type="text/javascript"></script>
+        <script src="plugins/angular-ui-select/select.min.js" type="text/javascript"></script>
 
 
         <!-- Config File -->
 
         <!-- Angular App -->
-        <script src="scripts/app.js?v=${git.commit.id}"></script>
+        <script src="scripts/app.js"></script>
 
-        <!-- Modules -->
-        <script src="scripts/modules/calendar-module.js?v=${git.commit.id}"></script>
-        <script src="scripts/modules/commons-module.js?v=${git.commit.id}"></script>
-        <script src="scripts/modules/project-module.js?v=${git.commit.id}"></script>
-        <script src="scripts/modules/user-module.js?v=${git.commit.id}"></script>
-        <script src="scripts/modules/endpoints-module.js?v=${git.commit.id}"></script>
+        <!-- CSP -->
+	        <!-- Modules -->
+		        <script src="scripts/csp/modules/endpoints-module.js"></script>
+	
+	        <!-- Usuário -->
+	
+	        <!-- Services -->
+		        <script src="scripts/csp/services/requests.js"></script>
+	
+	        <!-- Controllers -->
+		        <script src="scripts/csp/controllers/main-controller.js"></script>
 
-        <!--Controllers -->
-        <script src="scripts/controllers/login-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/menu-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/model-list-controller.js?v=${git.commit.id}"></script>
-        <!-- Calendar -->
-        <script src="scripts/controllers/Calendar/calendar-creation-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Calendar/event-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Calendar/componente-calendario-controller.js?v=${git.commit.id}"></script>
-        <!-- Commons -->
-        <script src="scripts/controllers/Commons/forum-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/forum-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/knowledge-base-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/knowledge-base-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/mural-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/mural-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/filtro-listagem-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/acesso-facil-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/centro-de-custo-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/centro-de-custo-componente-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/centro-de-custo-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/agendar-atividade-rotineira-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/apontamento-horas-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/topico-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/componente-botoes-voltar-cancelar-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/blog-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/paginacao-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/blog-post-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/blog-post-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/filtragem-componente-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/atividades-componente-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/atividades-rotineiras-agendadas-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/pendencias-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/pendencia-atividade-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/senha-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/resetar-senha-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Commons/notificacao-controller.js?v=${git.commit.id}"></script>
-        <!-- Project -->
-        <script src="scripts/controllers/Project/log-work-modal-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Project/project-activity-creation-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Project/project-automatic-activity-creation-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Project/project-creation-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Project/project-dashboard-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Project/project-pendencies-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/Project/tipoProjeto-controller.js?v=${git.commit.id}"></script>
-        <!-- User -->
-        <script src="scripts/controllers/User/realocacao-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/User/user-creation-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/User/user-list-controller.js?v=${git.commit.id}"></script>
-        <script src="scripts/controllers/User/user-profile-controller.js?v=${git.commit.id}"></script>
-
-        <!-- Services -->
-        <script src="scripts/services/utils/collection-utils.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/utils/date-utils.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/utils/centro-custo-utils-service.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/utils/calendario-utils-service.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/utils/projeto-utils-service.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/utils/json-utils.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/utils/callback-utils.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/ModelCRUDService.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/paginacao-service.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/filtragem-service.js?v=${git.commit.id}"></script>
-        <script src="scripts/services/user-data.js?v=${git.commit.id}"></script>
-
-        <!-- Directives -->
-        <script src="scripts/directives/dsd-table.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/filtro-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/filtro-componente-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/date-picker.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/event-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/activity-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/mural-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/apontamento-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/forum-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/centro-de-custo-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/centro-de-custo-componente-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/iteration-finish.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/base-conhecimento-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/base-conhecimento-componente-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/blog-post-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/atividades-componente-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/atividades-rotineiras-agendadas-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/pendencias-modal-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/paginacao-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/cancelar-voltar-directive.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/senha-modal-directive.js?v=${git.commit.id}"></script>
-        <!--UI Directives-->
-        <script src="scripts/directives/pg-sidebar.js?v=${git.commit.id}"></script>
-        <!-- todo: check -->
-        <script src="scripts/directives/cs-select.js?v=${git.commit.id}"></script>
-        <script src="scripts/directives/sidebar.js?v=${git.commit.id}"></script>
-
-        <!-- Models -->
-        <script src="scripts/models/apontamento-modal-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/atividade-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/motivo-pendencia-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/atividade-rotineira-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/calendar-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/forum-modal-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/project-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/user-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/transfer-crud-model.js?v=${git.commit.id}"></script>
-        <script src="scripts/models/commons-model.js?v=${git.commit.id}"></script>
-
-        <!-- Loaders -->
-        <script src="scripts/loaders/user-loader.js?v=${git.commit.id}"></script>
-        <script src="scripts/loaders/calendar-loader.js?v=${git.commit.id}"></script>
-        <script src="scripts/loaders/project-loader.js?v=${git.commit.id}"></script>
+	        <!-- Directives -->
     </body>
 </html>

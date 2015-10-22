@@ -41,5 +41,11 @@
         <dependent-module archiveName="postgresql-9.4-1203-jdbc42.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/postgresql/postgresql/9.4-1203-jdbc42/postgresql-9.4-1203-jdbc42.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jersey-core-${jersey.version}.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/sun/jersey/jersey-core/${jersey.version}/jersey-core-${jersey.version}.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-jaxrs-json-provider-${jackson-jaxrs-json-provider.version}.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/${jackson-jaxrs-json-provider.version}/jackson-jaxrs-json-provider-${jackson-jaxrs-json-provider.version}.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

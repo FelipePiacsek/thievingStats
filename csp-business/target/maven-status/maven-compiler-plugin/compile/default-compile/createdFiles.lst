@@ -1,2 +1,3 @@
-br\com\puc\tcc\csp\locais\LogradouroService.class
 br\com\puc\tcc\csp\usuario\UsuarioService.class
+br\com\puc\tcc\csp\locais\LogradouroService.class
+br\com\puc\tcc\csp\locais\BairroService.class
