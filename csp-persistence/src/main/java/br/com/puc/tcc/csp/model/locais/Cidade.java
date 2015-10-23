@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 @Entity
 @Table(name = "tb_cidades")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -21,7 +20,6 @@ public class Cidade extends Local{
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_zona")
-	@JsonManagedReference
 	private Set<Zona> zonas;
 
 	public Set<Zona> getZonas() {

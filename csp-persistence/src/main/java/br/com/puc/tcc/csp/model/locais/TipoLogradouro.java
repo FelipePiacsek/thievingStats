@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
@@ -12,8 +13,10 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 public class TipoLogradouro {
 
 	@Id
+	@JsonIgnore
 	private Long id;
 	
+	@JsonIgnore
 	private String sigla;
 	
 	private String descricao;

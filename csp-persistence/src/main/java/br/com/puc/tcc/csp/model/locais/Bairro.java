@@ -10,28 +10,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name = "tb_bairros")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Bairro extends Local{
-	
+public class Bairro extends Local {
+
 	@Id
 	private Long id;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_bairro")
-	@JsonManagedReference
+	@JsonIgnore
 	private Set<Logradouro> logradouros;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_zona")
-	@JsonBackReference
 	private Zona zona;
-	
+
 	public Zona getZona() {
 		return zona;
 	}
@@ -51,9 +49,9 @@ public class Bairro extends Local{
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 }

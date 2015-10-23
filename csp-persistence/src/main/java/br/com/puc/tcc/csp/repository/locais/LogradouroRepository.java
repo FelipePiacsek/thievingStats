@@ -7,26 +7,25 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
-import br.com.puc.tcc.csp.base.BaseRepository;
+import br.com.puc.tcc.csp.base.RepositoryEssentials;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 import br.com.puc.tcc.csp.model.locais.Logradouro_;
 
-public class LogradouroRepository extends BaseRepository<Logradouro>{
+public class LogradouroRepository extends RepositoryEssentials<Logradouro>{
 
 	public List<Logradouro> fetchAll(){
 		CriteriaQuery<Logradouro> query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
 		Root<Logradouro> from = query.from(getEntityType());
-		from.fetch(Logradouro_.bairro, JoinType.LEFT);
-        return getEntityManager().createQuery(query).getResultList();
+        return getResults(query);
 	}
 	
 	public Logradouro fetchLogradouroByCep(String cep){
 		CriteriaQuery<Logradouro> query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
 		Root<Logradouro> from = query.from(getEntityType());
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+		from.fetch(Logradouro_.bairro, JoinType.LEFT);
 		query.where(cb.equal(from.get(Logradouro_.cep), cep));
-		
-		return getEntityManager().createQuery(query).getSingleResult();
+		return getSingleResult(query);
 	}
 
 	@Override

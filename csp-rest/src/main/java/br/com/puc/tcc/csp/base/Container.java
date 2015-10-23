@@ -3,7 +3,6 @@ package br.com.puc.tcc.csp.base;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class Container<T> implements Serializable{
 
@@ -14,7 +13,7 @@ public class Container<T> implements Serializable{
 	
 	private Collection<T> objects;
 	
-	public Container(List<T> objects) {
+	public Container(Collection<T> objects) {
 		this.objects = objects;
 	}
 	
@@ -22,7 +21,9 @@ public class Container<T> implements Serializable{
 		if(this.objects == null){
 			this.objects = new ArrayList<T>();
 		}
-		this.objects.add(model);
+		if(model != null){
+			this.objects.add(model);
+		}
 	}
 
 	public Collection<T> getObjects() {

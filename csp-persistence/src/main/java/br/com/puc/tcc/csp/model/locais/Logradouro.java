@@ -7,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
@@ -26,7 +25,6 @@ public class Logradouro extends Local{
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_bairro")
-	@JsonBackReference
 	private Bairro bairro;
 
 	public Bairro getBairro() {

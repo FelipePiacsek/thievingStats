@@ -10,9 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name = "tb_zonas")
@@ -24,12 +23,12 @@ public class Zona extends Local{
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_zona")
-	@JsonManagedReference
+	@JsonIgnore
 	private Set<Bairro> bairros;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_zona")
-	@JsonBackReference
+	@JoinColumn(name = "id_cidade")
+	@JsonIgnore
 	private Cidade cidade;
 	
 	public Cidade getCidade() {
