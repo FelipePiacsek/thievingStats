@@ -2,8 +2,10 @@ package br.com.puc.tcc.csp.model.locais;
 
 import javax.persistence.MappedSuperclass;
 
+import br.com.puc.tcc.csp.model.Entidade;
+
 @MappedSuperclass
-public abstract class Local {
+public abstract class Local extends Entidade{
 
 	private String nome;
 	

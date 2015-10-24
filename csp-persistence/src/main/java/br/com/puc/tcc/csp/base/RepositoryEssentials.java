@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public abstract class RepositoryEssentials<T> {
 
@@ -34,4 +35,10 @@ public abstract class RepositoryEssentials<T> {
     protected boolean exists(final CriteriaQuery<Integer> query, final CriteriaBuilder builder) {
         return getSingleResult(query.select(builder.literal(1))) != null;
     }
+    
+    public List<T> fetchAll(){
+		CriteriaQuery<T> query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
+		Root<T> from = query.from(getEntityType());
+        return getResults(query);
+	}
 }

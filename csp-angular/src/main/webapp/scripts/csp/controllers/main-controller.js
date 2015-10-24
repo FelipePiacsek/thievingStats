@@ -14,10 +14,10 @@ angular.module('csp').controller('MainController', function ($scope, Endpoints, 
 	};
 	
 	$scope.teste = function(){
-		Requests.Do(Endpoints.base.locais.logradouro.model + "04111000").get().$promise.then(function(response){
+		Requests.Do(Endpoints.base.locais.logradouro.model + "/cep/04111000").get().$promise.then(function(response){
 			console.log(response);
 		}, function(promise){
-			alertify.error("Erro ao listar os bairros.");
+			alertify.error("Erro ao carregar a minha rua.");
 		});
 	};
 });

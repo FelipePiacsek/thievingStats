@@ -1,7 +1,5 @@
 package br.com.puc.tcc.csp.repository.locais;
 
-import java.util.List;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.JoinType;
@@ -16,12 +14,6 @@ public class BairroRepository extends RepositoryEssentials<Bairro>{
 	@Override
 	protected Class<Bairro> getEntityType() {
 		return Bairro.class;
-	}
-	
-	public List<Bairro> fetchAll(){
-		CriteriaQuery<Bairro> query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
-		Root<Bairro> from = query.from(getEntityType());
-        return getResults(query);
 	}
 
 	public Bairro fetchCompleteById(Long id) {

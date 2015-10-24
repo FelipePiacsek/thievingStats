@@ -2,6 +2,7 @@ package br.com.puc.tcc.csp.locais;
 
 import static java.util.Collections.emptySet;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import br.com.puc.tcc.csp.model.crimes.HistoricoCriminal;
 import br.com.puc.tcc.csp.model.locais.Bairro;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 import br.com.puc.tcc.csp.repository.locais.BairroRepository;
@@ -18,7 +20,7 @@ import br.com.puc.tcc.csp.repository.locais.BairroRepository;
  */
 @Stateless
 @LocalBean
-public class BairroService{
+public class BairroService implements ILocalService<Bairro>{
 
 	@Inject
 	private BairroRepository repository;
@@ -38,5 +40,12 @@ public class BairroService{
 		}
 		return emptySet();
 	}
+
+	@Override
+	public HistoricoCriminal<Bairro> getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

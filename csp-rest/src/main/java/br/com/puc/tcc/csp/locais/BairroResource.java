@@ -1,6 +1,7 @@
 package br.com.puc.tcc.csp.locais;
 
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Set;
 
 import javax.ejb.Stateless;
@@ -13,36 +14,18 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 
+import br.com.puc.tcc.csp.base.AbstractLocalResource;
 import br.com.puc.tcc.csp.base.Container;
+import br.com.puc.tcc.csp.model.crimes.HistoricoCriminal;
 import br.com.puc.tcc.csp.model.locais.Bairro;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 
 @Path("/bairro")
 @Stateless
-public class BairroResource {
+public class BairroResource extends AbstractLocalResource<Bairro>{
 
 	@Inject
 	private BairroService service;
-
-	@GET
-	@Path("all/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAll() {
-		List<Bairro> bairros = service.getAll();
-		Container<Bairro> container = new Container<Bairro>(bairros);
-		ResponseBuilder buider = Response.ok().entity(container);
-		return buider.build();
-	}
-	
-	@GET
-	@Path("{id}/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getBairroById(@PathParam("id") final Long id){
-		Bairro bairro = service.getBairroById(id);
-		Container<Bairro> container = new Container<Bairro>(bairro);
-		ResponseBuilder buider = Response.ok().entity(container);
-		return buider.build();
-	}
 	
 	@GET
 	@Path("{id}/logradouros")
@@ -53,4 +36,20 @@ public class BairroResource {
 		ResponseBuilder buider = Response.ok().entity(container);
 		return buider.build();
 	}
+
+	@Override
+	protected Collection<Bairro> listAll() {
+		return service.getAll();
+	}
+
+	@Override
+	protected Bairro getEntidadeById(Long id) {
+		return service.getBairroById(id);
+	}
+
+	@Override
+	protected HistoricoCriminal<Bairro> getHistoricoDoLocal(Long id, Timestamp dataInicio, Timestamp dataFim) {
+		return service.getHistoricoCriminal(id, dataInicio, dataFim);
+	}
+
 }

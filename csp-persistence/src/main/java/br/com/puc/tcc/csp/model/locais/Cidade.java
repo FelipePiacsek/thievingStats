@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,9 +13,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Table(name = "tb_cidades")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cidade extends Local{
-
-	@Id
-	private Long id;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_zona")
@@ -30,11 +26,4 @@ public class Cidade extends Local{
 		this.zonas = zonas;
 	}
 	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
 }

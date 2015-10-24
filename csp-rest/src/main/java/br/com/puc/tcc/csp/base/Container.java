@@ -18,10 +18,10 @@ public class Container<T> implements Serializable{
 	}
 	
 	public Container(T model) {
-		if(this.objects == null){
-			this.objects = new ArrayList<T>();
-		}
 		if(model != null){
+			if(this.objects == null){
+				this.objects = new ArrayList<T>();
+			}
 			this.objects.add(model);
 		}
 	}
