@@ -20,7 +20,7 @@ import br.com.puc.tcc.csp.repository.locais.BairroRepository;
  */
 @Stateless
 @LocalBean
-public class BairroService implements ILocalService<Bairro>{
+public class BairroService implements ILocalService{
 
 	@Inject
 	private BairroRepository repository;
@@ -42,7 +42,7 @@ public class BairroService implements ILocalService<Bairro>{
 	}
 
 	@Override
-	public HistoricoCriminal<Bairro> getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
+	public HistoricoCriminal getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
 		// TODO Auto-generated method stub
 		return null;
 	}

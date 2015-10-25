@@ -1,6 +1,9 @@
 package br.com.puc.tcc.csp.base;
 
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.List;
 
@@ -41,8 +44,8 @@ public abstract class AbstractLocalResource<T extends Local> extends AbstractRes
 		MultivaluedMap<String, String> queryParameters = uriInfo.getQueryParameters();
 		Timestamp dataInicio =  obterData("dataInicio", queryParameters);
 		Timestamp dataFim =  obterData("dataFim", queryParameters);
-		HistoricoCriminal<T> historico = getHistoricoDoLocal(id, dataInicio, dataFim);
-		Container<HistoricoCriminal<T>> container = new Container<HistoricoCriminal<T>> (historico);
+		HistoricoCriminal historico = getHistoricoDoLocal(id, dataInicio, dataFim);
+		Container<HistoricoCriminal> container = new Container<HistoricoCriminal> (historico);
 		ResponseBuilder buider = Response.ok().entity(container);
 		return buider.build();
 	}
@@ -50,12 +53,12 @@ public abstract class AbstractLocalResource<T extends Local> extends AbstractRes
 
 	protected abstract Collection<T> listAll();
 	
-	protected abstract HistoricoCriminal<T> getHistoricoDoLocal(Long id, Timestamp dataInicio, Timestamp dataFim);
+	protected abstract HistoricoCriminal getHistoricoDoLocal(Long id, Timestamp dataInicio, Timestamp dataFim);
 
 	private Timestamp obterData(String data, MultivaluedMap<String,String> queryParameters) {
 		List<String> datas = queryParameters.get(data);
 		if(datas.size() > 0){
-			return Timestamp.valueOf(datas.get(0));
+			return Timestamp.valueOf(LocalDateTime.ofInstant(Instant.parse(datas.get(0)), ZoneId.systemDefault()));
 		}
 		return null;
 	}

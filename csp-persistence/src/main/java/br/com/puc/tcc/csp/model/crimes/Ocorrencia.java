@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import br.com.puc.tcc.csp.model.Entidade;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 
@@ -21,8 +23,9 @@ public abstract class Ocorrencia extends Entidade {
 	@Column(name="data_registro")
 	private Timestamp dataRegistro;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_logradouro")
+	@JsonIgnore
 	private Logradouro localDoCrime;
 
 	public Timestamp getDataOcorrencia() {

@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import br.com.puc.tcc.csp.criminalidade.HistoricoCriminalService;
 import br.com.puc.tcc.csp.model.crimes.HistoricoCriminal;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 import br.com.puc.tcc.csp.repository.locais.LogradouroRepository;
@@ -16,10 +17,13 @@ import br.com.puc.tcc.csp.repository.locais.LogradouroRepository;
  */
 @Stateless
 @LocalBean
-public class LogradouroService implements ILocalService<Logradouro>{
+public class LogradouroService implements ILocalService{
 
 	@Inject
 	private LogradouroRepository repository;
+	
+	@Inject 
+	private HistoricoCriminalService historicoCriminalService;
 	
 	public List<Logradouro> getAll(){
 		return repository.fetchAll();
@@ -34,9 +38,9 @@ public class LogradouroService implements ILocalService<Logradouro>{
 	}
 
 	@Override
-	public HistoricoCriminal<Logradouro> getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
-		// TODO Auto-generated method stub
-		return null;
+	public HistoricoCriminal getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
+		Logradouro logradouro = repository.fetchCompleteById(id);
+		return historicoCriminalService.getHistoricoCriminal(logradouro, dataInicio, dataFim);
 	}
 
 }

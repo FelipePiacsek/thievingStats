@@ -1,57 +1,57 @@
 package br.com.puc.tcc.csp.model.crimes;
 
 import java.sql.Timestamp;
-import java.util.Set;
+import java.util.Collection;
 
 import br.com.puc.tcc.csp.model.locais.Local;
 
-public class HistoricoCriminal<T extends Local> {
+public class HistoricoCriminal {
 
 	private Timestamp dataInicio;
 
 	private Timestamp dataFim;
 	
-	private T local;
+	private Local local;
 	
 	private Double indiceCriminalidade;
 	
-	private Set<Roubo> roubos;
+	private Collection<Roubo> roubos;
 	
-	private Set<Estupro> estupros;
+	private Collection<Estupro> estupros;
 	
-	private Set<LesaoCorporal> lesoes;
+	private Collection<LesaoCorporal> lesoes;
 	
-	private Set<Homicidio> homicidios;
+	private Collection<Homicidio> homicidios;
 	
-	public Set<Roubo> getRoubos() {
+	public Collection<Roubo> getRoubos() {
 		return roubos;
 	}
 	
-	public void setRoubos(Set<Roubo> roubos) {
+	public void setRoubos(Collection<Roubo> roubos) {
 		this.roubos = roubos;
 	}
 	
-	public Set<Estupro> getEstupros() {
+	public Collection<Estupro> getEstupros() {
 		return estupros;
 	}
 	
-	public void setEstupros(Set<Estupro> estupros) {
+	public void setEstupros(Collection<Estupro> estupros) {
 		this.estupros = estupros;
 	}
 	
-	public Set<LesaoCorporal> getLesoes() {
+	public Collection<LesaoCorporal> getLesoes() {
 		return lesoes;
 	}
 	
-	public void setLesoes(Set<LesaoCorporal> lesoes) {
+	public void setLesoes(Collection<LesaoCorporal> lesoes) {
 		this.lesoes = lesoes;
 	}
 	
-	public Set<Homicidio> getHomicidios() {
+	public Collection<Homicidio> getHomicidios() {
 		return homicidios;
 	}
 	
-	public void setHomicidios(Set<Homicidio> homicidios) {
+	public void setHomicidios(Collection<Homicidio> homicidios) {
 		this.homicidios = homicidios;
 	}
 
@@ -75,7 +75,7 @@ public class HistoricoCriminal<T extends Local> {
 		return local;
 	}
 
-	public void setLocal(T local) {
+	public void setLocal(Local local) {
 		this.local = local;
 	}
 

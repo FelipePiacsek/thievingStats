@@ -46,7 +46,7 @@ public class LogradouroResource extends AbstractLocalResource<Logradouro>{
 	}
 
 	@Override
-	protected HistoricoCriminal<Logradouro> getHistoricoDoLocal(Long id, Timestamp dataInicio, Timestamp dataFim) {
+	protected HistoricoCriminal getHistoricoDoLocal(Long id, Timestamp dataInicio, Timestamp dataFim) {
 		return service.getHistoricoCriminal(id, dataInicio, dataFim);
 	}
 
