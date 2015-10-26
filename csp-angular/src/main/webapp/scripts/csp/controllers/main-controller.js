@@ -16,7 +16,7 @@ angular.module('csp').controller('MainController', function ($scope, Endpoints, 
 	$scope.teste = function(){
 		//yyyy-mm-dd hh:mm:ss
 		var dataInicio = new Date();
-		dataInicio.setFullYear(2014);
+		dataInicio.setFullYear(2011);
 		
 		var dataFim = new Date();
 		dataFim.setFullYear(2016);
@@ -29,8 +29,11 @@ angular.module('csp').controller('MainController', function ($scope, Endpoints, 
 		
 		console.log(query);
 		
-		Requests.Do(Endpoints.base.locais.logradouro.historicoCriminal.replace(":id", 3595)).get(query).$promise.then(function(response){
-			console.log(response);
+		Requests.Do(Endpoints.base.locais.cidade.historicoCriminal.replace(":id", 1)).get(query).$promise.then(function(response){
+			historico = response.objects[0];
+			historico.dataInicio = new Date(historico.dataInicio);
+			historico.dataFim = new Date(historico.dataFim);
+			console.log(historico);
 		}, function(promise){
 			alertify.error("Erro ao carregar o histórico da minha rua.");
 		});

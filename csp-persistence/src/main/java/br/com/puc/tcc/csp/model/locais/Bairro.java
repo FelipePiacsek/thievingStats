@@ -17,8 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Bairro extends Local {
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_bairro")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="bairro")
 	@JsonIgnore
 	private Set<Logradouro> logradouros;
 

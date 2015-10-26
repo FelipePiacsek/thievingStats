@@ -10,6 +10,16 @@ angular.module('csp.endpoints', []).constant('Endpoints', {
 				todos : '/csp-resources/bairro/all',
 				historicoCriminal : '/csp-resources/bairro/:id/historicoCriminal'
 			},
+			zona : {
+				model : '/csp-resources/zona/',
+				todos : '/csp-resources/zona/all',
+				historicoCriminal : '/csp-resources/zona/:id/historicoCriminal'
+			},
+			cidade : {
+				model : '/csp-resources/cidade/',
+				todos : '/csp-resources/cidade/all',
+				historicoCriminal : '/csp-resources/cidade/:id/historicoCriminal'
+			}
 			
 		}
 	}

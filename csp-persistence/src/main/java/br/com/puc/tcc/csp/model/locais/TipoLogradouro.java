@@ -1,21 +1,18 @@
 package br.com.puc.tcc.csp.model.locais;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
+import br.com.puc.tcc.csp.model.Entidade;
+
 @Entity
 @Table(name = "tb_tipos_logradouros")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TipoLogradouro {
+public class TipoLogradouro extends Entidade{
 
-	@Id
-	@JsonIgnore
-	private Long id;
-	
 	@JsonIgnore
 	private String sigla;
 	
@@ -36,14 +33,5 @@ public class TipoLogradouro {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 
 }

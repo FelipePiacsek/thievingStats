@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -14,8 +13,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cidade extends Local{
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_zona")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="cidade")
 	private Set<Zona> zonas;
 
 	public Set<Zona> getZonas() {

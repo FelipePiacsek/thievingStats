@@ -34,6 +34,7 @@ public class LogradouroRepository extends RepositoryEssentials<Logradouro>{
 		Root<Logradouro> from = query.from(getEntityType());
 		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
 		from.fetch(Logradouro_.bairro, JoinType.LEFT).fetch(Bairro_.zona, JoinType.LEFT);
+		from.fetch(Logradouro_.tipo, JoinType.LEFT);
 		if(id != null){
 			query.where(cb.equal(from.get(Logradouro_.id), id));
 		}else{

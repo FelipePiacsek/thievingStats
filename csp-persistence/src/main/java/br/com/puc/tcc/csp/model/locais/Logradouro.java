@@ -15,7 +15,7 @@ public class Logradouro extends Local{
 
 	private Integer cep;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_tipo_logradouro")
 	private TipoLogradouro tipo;
 
