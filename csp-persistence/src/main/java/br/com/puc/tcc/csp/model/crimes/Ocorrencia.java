@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -15,6 +16,9 @@ import br.com.puc.tcc.csp.model.locais.Logradouro;
 
 @MappedSuperclass
 public abstract class Ocorrencia extends Entidade {
+	
+	@Id
+	private Long id;
 	
 	@Column(name="data_ocorrencia")
 	private Timestamp dataOcorrencia;
@@ -52,4 +56,14 @@ public abstract class Ocorrencia extends Entidade {
 		this.localDoCrime = localDoCrime;
 	}
 	
+	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

@@ -2,42 +2,37 @@ package br.com.puc.tcc.csp.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.hibernate.validator.constraints.Email;
 
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 
 @Entity
 @Table(name = "tb_usuarios")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Usuario {
-
-	@Id
-	private Long id;
+public class Usuario extends Entidade{
 	
+	@Id
+    @SequenceGenerator(allocationSize = 0, name = "tb_usuarios_id_seq", sequenceName = "tb_usuarios_id_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_usuarios_id_seq")
+	private Long id;
+
 	private String nome;
 	
 	private String sobrenome;
 	
-	@Email
 	private String email;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_logradouro")
 	private Logradouro residencia;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -69,6 +64,16 @@ public class Usuario {
 
 	public void setResidencia(Logradouro residencia) {
 		this.residencia = residencia;
+	}
+
+	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	

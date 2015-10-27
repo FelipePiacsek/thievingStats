@@ -1,32 +1,37 @@
 package br.com.puc.tcc.csp.repository.locais;
 
-import static java.util.Collections.singletonList;
-
-import java.util.List;
-
-import javax.persistence.metamodel.SetAttribute;
-import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import br.com.puc.tcc.csp.base.RepositoryEssentials;
-import br.com.puc.tcc.csp.model.Entidade;
 import br.com.puc.tcc.csp.model.locais.Zona;
 import br.com.puc.tcc.csp.model.locais.Zona_;
 
 public class ZonaRepository extends RepositoryEssentials<Zona>{
+
+	private CriteriaQuery<Zona> query;
+
+	private Root<Zona> from;
+	
+	private CriteriaBuilder cb;
+	
+	private void initialize() {
+		query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
+		cb = getEntityManager().getCriteriaBuilder();
+		from = query.from(getEntityType());
+	}
 
 	@Override
 	protected Class<Zona> getEntityType() {
 		return Zona.class;
 	}
 
-	@Override
-	protected List<SetAttribute<Zona, ? extends Entidade>> getSetAttributes() {
-		return singletonList(Zona_.bairros);
-	}
-	
-	@Override
-	protected List<SingularAttribute<Zona, ? extends Entidade>> getSingularAttributes() {
-		return singletonList(Zona_.cidade);
+	public Zona fetchCompleteById(Long id) {
+		initialize();
+		from.fetch(Zona_.bairros);
+		query.where(cb.equal(from.get(Zona_.id), id));
+		return getSingleResult(query);
 	}
 
 }

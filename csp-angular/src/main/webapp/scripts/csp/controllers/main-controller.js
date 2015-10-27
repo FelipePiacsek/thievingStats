@@ -38,4 +38,21 @@ angular.module('csp').controller('MainController', function ($scope, Endpoints, 
 			alertify.error("Erro ao carregar o histórico da minha rua.");
 		});
 	};
+	
+	$scope.cadastrar = function(){
+		var usuario = new Object();
+		usuario.nome = "Felipe";
+		usuario.sobrenome = "Piacsek";
+		usuario.email = "felipe..piacsek@fdte.org.br";
+		usuario.residencia = new Object();
+		usuario.residencia.cep = "04111000";
+		console.log(usuario);
+		Requests.Do(Endpoints.base.usuario.cadastro).post(usuario).$promise.then(function(response){
+			alertify.success("Usuário cadastrado com sucesso!");
+		}, function(promise){
+			for(i=0;i<promise.data.objects.length;i++){
+				alertify.error(promise.data.objects[i]);
+			}
+		});
+	};
 });

@@ -12,34 +12,41 @@ import br.com.puc.tcc.csp.model.locais.Logradouro_;
 
 public class LogradouroRepository extends RepositoryEssentials<Logradouro>{
 
+	private CriteriaQuery<Logradouro> query;
+
+	private Root<Logradouro> from;
+	
+	private CriteriaBuilder cb;
+	
+	private void initialize() {
+		query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
+		cb = getEntityManager().getCriteriaBuilder();
+		from = query.from(getEntityType());
+	}
+	
 	@Override
 	protected Class<Logradouro> getEntityType() {
 		return Logradouro.class;
 	}
 	
 	public Logradouro fetchLogradouroByCep(String cep){
-		return fetchComplete(null, cep);
-	}
-
-	@Override
-	public Logradouro fetchCompleteById(Long id) {
-		return fetchComplete(id, null);
-	}
-	
-	private Logradouro fetchComplete(Long id, String cep){
-		if(id == null && cep == null){
-			throw new IllegalArgumentException();
-		}
-		CriteriaQuery<Logradouro> query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
-		Root<Logradouro> from = query.from(getEntityType());
-		CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+		initialize();
 		from.fetch(Logradouro_.bairro, JoinType.LEFT).fetch(Bairro_.zona, JoinType.LEFT);
 		from.fetch(Logradouro_.tipo, JoinType.LEFT);
-		if(id != null){
-			query.where(cb.equal(from.get(Logradouro_.id), id));
-		}else{
-			query.where(cb.equal(from.get(Logradouro_.cep), cep));
-		}
+		query.where(cb.equal(from.get(Logradouro_.cep), cep));
 		return getSingleResult(query);
 	}
+
+	public Logradouro fetchCompleteById(Long id) {
+		initialize();
+		from.fetch(Logradouro_.bairro, JoinType.LEFT).fetch(Bairro_.zona, JoinType.LEFT);
+		from.fetch(Logradouro_.tipo, JoinType.LEFT);
+		query.where(cb.equal(from.get(Logradouro_.id), id));
+		return getSingleResult(query);
+	}
+
+	public boolean existe(String cep) {
+		return this.fetchLogradouroByCep(cep) != null;
+	}
+
 }

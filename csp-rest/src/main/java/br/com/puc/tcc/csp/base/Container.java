@@ -13,6 +13,7 @@ public class Container<T> implements Serializable{
 	
 	private Collection<T> objects;
 	
+	
 	public Container(Collection<T> objects) {
 		this.objects = objects;
 	}

@@ -13,7 +13,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Logradouro extends Local{
 
-	private Integer cep;
+	private String cep;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_tipo_logradouro")
@@ -31,11 +31,11 @@ public class Logradouro extends Local{
 		this.bairro = bairro;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 	

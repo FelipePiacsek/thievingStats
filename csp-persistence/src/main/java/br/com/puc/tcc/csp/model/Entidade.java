@@ -1,20 +1,9 @@
 package br.com.puc.tcc.csp.model;
 
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-
-@MappedSuperclass
 public abstract class Entidade {
 
-	@Id
-	private Long id;
+	public abstract Long getId(); 
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public abstract void setId(Long id);
 	
 }

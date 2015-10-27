@@ -17,7 +17,6 @@ public class CidadeRepository extends RepositoryEssentials<Cidade> {
 		return Cidade.class;
 	}
 
-	@Override
 	public Cidade fetchCompleteById(Long id) {
 		CriteriaQuery<Cidade> query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
 		Root<Cidade> from = query.from(getEntityType());

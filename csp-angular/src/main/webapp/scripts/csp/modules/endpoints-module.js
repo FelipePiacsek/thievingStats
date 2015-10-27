@@ -21,6 +21,9 @@ angular.module('csp.endpoints', []).constant('Endpoints', {
 				historicoCriminal : '/csp-resources/cidade/:id/historicoCriminal'
 			}
 			
+		},
+		usuario : {
+			cadastro : '/csp-resources/usuario/'
 		}
 	}
 	
