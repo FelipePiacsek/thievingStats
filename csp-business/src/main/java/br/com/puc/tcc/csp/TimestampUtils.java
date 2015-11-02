@@ -1,5 +1,16 @@
 package br.com.puc.tcc.csp;
 
+import static java.time.Month.APRIL;
+import static java.time.Month.AUGUST;
+import static java.time.Month.DECEMBER;
+import static java.time.Month.FEBRUARY;
+import static java.time.Month.JANUARY;
+import static java.time.Month.JULY;
+import static java.time.Month.JUNE;
+import static java.time.Month.MARCH;
+import static java.time.Month.MAY;
+import static java.time.Month.NOVEMBER;
+
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Month;
@@ -26,50 +37,22 @@ public class TimestampUtils {
 
 	public static int diasNoMes(int ano, Month mes) {
 		int diasNoMes = 0;
-		switch (mes) {
-		case JANUARY:
+		
+		if(mes.equals(JANUARY) || mes.equals(MARCH) || mes.equals(MAY) || mes.equals(JULY) 
+		|| mes.equals(AUGUST) || mes.equals(Month.OCTOBER) || mes.equals(DECEMBER)){
 			diasNoMes = 31;
-			break;
-		case FEBRUARY:
+		}else if(mes.equals(APRIL) || mes.equals(JUNE) || mes.equals(Month.SEPTEMBER) || mes.equals(NOVEMBER)){
+			diasNoMes = 30;
+		}else if(mes.equals(FEBRUARY)){
 			if (anoBissexto(ano)) {
 				diasNoMes = 29;
 			} else {
 				diasNoMes = 28;
 			}
-			break;
-		case MARCH:
-			diasNoMes = 31;
-			break;
-		case APRIL:
-			diasNoMes = 30;
-			break;
-		case MAY:
-			diasNoMes = 31;
-			break;
-		case JUNE:
-			diasNoMes = 30;
-			break;
-		case JULY:
-			diasNoMes = 31;
-			break;
-		case AUGUST:
-			diasNoMes = 31;
-			break;
-		case SEPTEMBER:
-			diasNoMes = 30;
-			break;
-		case OCTOBER:
-			diasNoMes = 31;
-			break;
-		case NOVEMBER:
-			diasNoMes = 30;
-			break;
-		case DECEMBER:
-			diasNoMes = 31;
-			break;
-		default:
+		}else{
 			throw new RuntimeException("Fim dos tempos!");
 		}
+		
 		return diasNoMes;
 	}
 
