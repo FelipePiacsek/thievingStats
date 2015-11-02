@@ -1,7 +1,6 @@
 package br.com.puc.tcc.csp.model.crimes;
 
 import java.sql.Timestamp;
-import java.util.Collection;
 
 import br.com.puc.tcc.csp.model.locais.Local;
 
@@ -15,43 +14,43 @@ public class HistoricoCriminal {
 	
 	private Double indiceCriminalidade;
 	
-	private Collection<Roubo> roubos;
+	private Integer roubos;
 	
-	private Collection<Estupro> estupros;
+	private Integer estupros;
 	
-	private Collection<LesaoCorporal> lesoes;
+	private Integer lesoes;
 	
-	private Collection<Homicidio> homicidios;
+	private Integer homicidios;
 	
-	public Collection<Roubo> getRoubos() {
+	public Integer getRoubos() {
 		return roubos;
 	}
 	
-	public void setRoubos(Collection<Roubo> roubos) {
+	public void setRoubos(Integer roubos) {
 		this.roubos = roubos;
 	}
 	
-	public Collection<Estupro> getEstupros() {
+	public Integer getEstupros() {
 		return estupros;
 	}
 	
-	public void setEstupros(Collection<Estupro> estupros) {
+	public void setEstupros(Integer estupros) {
 		this.estupros = estupros;
 	}
 	
-	public Collection<LesaoCorporal> getLesoes() {
+	public Integer getLesoes() {
 		return lesoes;
 	}
 	
-	public void setLesoes(Collection<LesaoCorporal> lesoes) {
+	public void setLesoes(Integer lesoes) {
 		this.lesoes = lesoes;
 	}
 	
-	public Collection<Homicidio> getHomicidios() {
+	public Integer getHomicidios() {
 		return homicidios;
 	}
 	
-	public void setHomicidios(Collection<Homicidio> homicidios) {
+	public void setHomicidios(Integer homicidios) {
 		this.homicidios = homicidios;
 	}
 

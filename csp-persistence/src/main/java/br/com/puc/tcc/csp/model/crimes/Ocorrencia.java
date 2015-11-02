@@ -11,11 +11,10 @@ import javax.persistence.MappedSuperclass;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import br.com.puc.tcc.csp.model.Entidade;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 
 @MappedSuperclass
-public abstract class Ocorrencia extends Entidade {
+public abstract class Ocorrencia {
 	
 	@Id
 	private Long id;
@@ -56,12 +55,10 @@ public abstract class Ocorrencia extends Entidade {
 		this.localDoCrime = localDoCrime;
 	}
 	
-	@Override
 	public Long getId() {
 		return this.id;
 	}
 
-	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

@@ -25,11 +25,8 @@ public class RouboService implements ICriminalidade {
 	}
 
 	private Double efetuarCalculoIndice(Integer quantidadeDeRoubos) {
-		return quantidadeDeRoubos * mediaAritimeticaPenas();
+		return quantidadeDeRoubos * mediaAritmeticaPenas(penaMinima, penaMaxima);
 	}
 	
-	private Double mediaAritimeticaPenas(){
-		return (penaMinima + penaMaxima) / 2.0;
-	}
 
 }

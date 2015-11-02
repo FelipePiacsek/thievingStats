@@ -31,16 +31,11 @@ public class LesaoCorporalService implements ICriminalidade {
 	}
 
 	private double efetuarCalculoIndice(Integer quantidadeLesoesGraves, Integer quantidadeLesoesLeves) {
-		return (quantidadeLesoesGraves * fatorLesaoGrave + quantidadeLesoesLeves * fatorLesaoLeve) * mediaAritimeticaPenas();
+		return (quantidadeLesoesGraves * fatorLesaoGrave + quantidadeLesoesLeves * fatorLesaoLeve) * mediaAritmeticaPenas(penaMinima, penaMaxima);
 	}
 
 	private Integer getQuantidadeLesoes(List<? extends Ocorrencia> ocorrencias, LesaoCorporal.TipoLesao tipoLesao) {
 		Long quantidade = ocorrencias.stream().filter(lesao -> ((LesaoCorporal) lesao).getTipo().equals(tipoLesao)).count();
 		return quantidade.intValue();
 	}
-
-	private Double mediaAritimeticaPenas(){
-		return (penaMinima + penaMaxima) / 2.0;
-	}
-	
 }

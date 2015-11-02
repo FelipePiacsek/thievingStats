@@ -13,7 +13,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import br.com.puc.tcc.csp.base.Container;
+import br.com.puc.tcc.csp.comunicacao.NotificacaoService;
 import br.com.puc.tcc.csp.model.Usuario;
+import br.com.puc.tcc.csp.usuario.validacao.ErrosValidacaoUsuario;
 
 @Stateless
 @LocalBean
@@ -21,13 +23,17 @@ import br.com.puc.tcc.csp.model.Usuario;
 public class UsuarioResource {
 
 	@Inject
-	private UsuarioService service;
+	private UsuarioService usuarioService;
+	
+	@Inject
+	private NotificacaoService notificacaoService;
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getLogradouroByCep(Usuario usuario) {
-		List<ErrosValidacaoUsuario> errosNoCadastro = service.cadastrar(usuario);
+	public Response cadastrar(Usuario usuario) {
+		List<ErrosValidacaoUsuario> errosNoCadastro = usuarioService.cadastrar(usuario);
 		if(errosNoCadastro.isEmpty()){
+			notificacaoService.notificar(usuario.getEmail());
 			return Response.ok().build();
 		}else{
 			List<String> mensagens = new ArrayList<String>();

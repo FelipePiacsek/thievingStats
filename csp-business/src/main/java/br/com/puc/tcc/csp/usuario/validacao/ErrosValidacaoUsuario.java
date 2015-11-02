@@ -1,4 +1,4 @@
-package br.com.puc.tcc.csp.usuario;
+package br.com.puc.tcc.csp.usuario.validacao;
 
 public enum ErrosValidacaoUsuario {
 

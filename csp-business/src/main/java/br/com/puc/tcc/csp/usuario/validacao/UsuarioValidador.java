@@ -1,4 +1,4 @@
-package br.com.puc.tcc.csp.usuario;
+package br.com.puc.tcc.csp.usuario.validacao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.puc.tcc.csp.model.Usuario;
-import br.com.puc.tcc.csp.model.repository.UsuarioRepository;
+import br.com.puc.tcc.csp.repository.UsuarioRepository;
 import br.com.puc.tcc.csp.repository.locais.LogradouroRepository;
 
 public class UsuarioValidador {

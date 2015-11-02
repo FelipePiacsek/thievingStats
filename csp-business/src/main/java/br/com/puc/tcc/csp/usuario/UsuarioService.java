@@ -7,8 +7,10 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import br.com.puc.tcc.csp.model.Usuario;
-import br.com.puc.tcc.csp.model.repository.UsuarioRepository;
+import br.com.puc.tcc.csp.repository.UsuarioRepository;
 import br.com.puc.tcc.csp.repository.locais.LogradouroRepository;
+import br.com.puc.tcc.csp.usuario.validacao.ErrosValidacaoUsuario;
+import br.com.puc.tcc.csp.usuario.validacao.UsuarioValidador;
 
 /**
  * Classe de negócios referente aos usuários.

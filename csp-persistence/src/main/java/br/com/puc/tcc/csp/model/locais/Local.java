@@ -3,10 +3,8 @@ package br.com.puc.tcc.csp.model.locais;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import br.com.puc.tcc.csp.model.Entidade;
-
 @MappedSuperclass
-public abstract class Local extends Entidade{
+public abstract class Local{
 
 	@Id
 	private Long id;
@@ -21,12 +19,10 @@ public abstract class Local extends Entidade{
 		this.nome = nome;
 	}
 	
-	@Override
 	public Long getId() {
 		return this.id;
 	}
 
-	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

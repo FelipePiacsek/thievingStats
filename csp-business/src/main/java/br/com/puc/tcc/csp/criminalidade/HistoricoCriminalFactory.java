@@ -52,10 +52,10 @@ public class HistoricoCriminalFactory {
 		List<LesaoCorporal> lesoes = lesaoCorporalRepository.getOcorrenciasByLogradouroEDatas(logradouro, dataInicio, dataFim);
 		List<Roubo> roubos = rouboRepository.getOcorrenciasByLogradouroEDatas(logradouro, dataInicio, dataFim);
 
-		historico.setEstupros(estupros);
-		historico.setHomicidios(homicidios);
-		historico.setLesoes(lesoes);
-		historico.setRoubos(roubos);
+		historico.setEstupros(estupros.size());
+		historico.setHomicidios(homicidios.size());
+		historico.setLesoes(lesoes.size());
+		historico.setRoubos(roubos.size());
 
 		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
@@ -74,10 +74,10 @@ public class HistoricoCriminalFactory {
 		List<LesaoCorporal> lesoes = lesaoCorporalRepository.getOcorrenciasByBairroEDatas(bairro, dataInicio, dataFim);
 		List<Roubo> roubos = rouboRepository.getOcorrenciasByBairroEDatas(bairro, dataInicio, dataFim);
 		
-		historico.setEstupros(estupros);
-		historico.setHomicidios(homicidios);
-		historico.setLesoes(lesoes);
-		historico.setRoubos(roubos);
+		historico.setEstupros(estupros.size());
+		historico.setHomicidios(homicidios.size());
+		historico.setLesoes(lesoes.size());
+		historico.setRoubos(roubos.size());
 		
 		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
@@ -96,10 +96,10 @@ public class HistoricoCriminalFactory {
 		List<LesaoCorporal> lesoes = lesaoCorporalRepository.getOcorrenciasByZonaEDatas(zona, dataInicio, dataFim);
 		List<Roubo> roubos = rouboRepository.getOcorrenciasByZonaEDatas(zona, dataInicio, dataFim);
 		
-		historico.setEstupros(estupros);
-		historico.setHomicidios(homicidios);
-		historico.setLesoes(lesoes);
-		historico.setRoubos(roubos);
+		historico.setEstupros(estupros.size());
+		historico.setHomicidios(homicidios.size());
+		historico.setLesoes(lesoes.size());
+		historico.setRoubos(roubos.size());
 		
 		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
@@ -118,10 +118,10 @@ public class HistoricoCriminalFactory {
 		List<LesaoCorporal> lesoes = lesaoCorporalRepository.getOcorrenciasByCidadeEDatas(cidade, dataInicio, dataFim);
 		List<Roubo> roubos = rouboRepository.getOcorrenciasByCidadeEDatas(cidade, dataInicio, dataFim);
 		
-		historico.setEstupros(estupros);
-		historico.setHomicidios(homicidios);
-		historico.setLesoes(lesoes);
-		historico.setRoubos(roubos);
+		historico.setEstupros(estupros.size());
+		historico.setHomicidios(homicidios.size());
+		historico.setLesoes(lesoes.size());
+		historico.setRoubos(roubos.size());
 		
 		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);

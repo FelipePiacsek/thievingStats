@@ -17,7 +17,7 @@ import br.com.puc.tcc.csp.model.locais.Logradouro;
 @Entity
 @Table(name = "tb_usuarios")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Usuario extends Entidade{
+public class Usuario{
 	
 	@Id
     @SequenceGenerator(allocationSize = 0, name = "tb_usuarios_id_seq", sequenceName = "tb_usuarios_id_seq")
@@ -66,12 +66,10 @@ public class Usuario extends Entidade{
 		this.residencia = residencia;
 	}
 
-	@Override
 	public Long getId() {
 		return this.id;
 	}
 
-	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

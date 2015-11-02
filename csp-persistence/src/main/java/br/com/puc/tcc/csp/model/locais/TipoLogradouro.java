@@ -7,12 +7,10 @@ import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-import br.com.puc.tcc.csp.model.Entidade;
-
 @Entity
 @Table(name = "tb_tipos_logradouros")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TipoLogradouro extends Entidade{
+public class TipoLogradouro {
 
 	@Id
 	private Long id;
@@ -38,12 +36,10 @@ public class TipoLogradouro extends Entidade{
 		this.descricao = descricao;
 	}
 
-	@Override
 	public Long getId() {
 		return this.id;
 	}
 
-	@Override
 	public void setId(Long id) {
 		this.id = id;
 	}

@@ -40,16 +40,11 @@ public class HomicidioService implements ICriminalidade {
 		return (quantidadeCulposos      * fatorHomicidioCulposo + 
 				quantidadeQualificados  * fatorHomicidioQualificado + 
 				quantidadePrivilegiados * fatorHomicidioPrivilegiado + 
-				quantidadeSimples       * fatorHomicidioSimples) * mediaAritimeticaPenas();
+				quantidadeSimples       * fatorHomicidioSimples) * mediaAritmeticaPenas(penaMinima, penaMaxima);
 	}
 
 	private Integer getQuantidadeHomicidios(List<? extends Ocorrencia> ocorrencias, Homicidio.Qualificacao qualificacao) {
 		Long quantidade = ocorrencias.stream().filter(homicidio -> ((Homicidio) homicidio).getTipo().equals(qualificacao)).count();
 		return quantidade.intValue();
 	}
-
-	private Double mediaAritimeticaPenas(){
-		return (penaMinima + penaMaxima) / 2.0;
-	}
-
 }
