@@ -6,6 +6,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import com.sendgrid.SendGrid.Email;
+
+import br.com.puc.tcc.csp.TimestampUtils;
 import br.com.puc.tcc.csp.model.Relatorio;
 import br.com.puc.tcc.csp.model.Usuario;
 import br.com.puc.tcc.csp.repository.UsuarioRepository;
@@ -21,20 +24,25 @@ public class NotificacaoService {
 	private EmailService emailService;
 	
 	@Inject
-	private RelatorioFactory relatorioService;
+	private RelatorioFactory relatorioFactory;
+	
+	@Inject
+	private EmailFactory emailFactory;
 	
 	public void notificar(String emailUsuario){
 		Usuario usuario = usuarioRepository.fetchCompleteByEmail(emailUsuario);
-		Relatorio relatorio = relatorioService.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
-		emailService.enviarRelatorio(relatorio, usuario);
+		Relatorio relatorio = relatorioFactory.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
+		Email email = emailFactory.construirEmail(relatorio, usuario);
+		emailService.enviarEmail(email);
 	}
 	
 	//Scheduler: uma vez por mês.
 	private void notificarTodos(){
 		List<Usuario> usuarios = usuarioRepository.fetchAll();
 		for (Usuario usuario : usuarios) {
-			Relatorio relatorio = relatorioService.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
-			emailService.enviarRelatorio(relatorio, usuario);
+			Relatorio relatorio = relatorioFactory.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
+			Email email = emailFactory.construirEmail(relatorio, usuario);
+			emailService.enviarEmail(email);
 		}
 	}
 }

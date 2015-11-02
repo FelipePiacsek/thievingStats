@@ -28,6 +28,9 @@ public class RelatorioFactory {
 		relatorio.setHistoricoBairro(historicoBairro);
 		relatorio.setHistoricoZona(historicoZona);
 		relatorio.setHistoricoCidade(historicoCidade);
+		
+		relatorio.setDataInicio(dataInicio);
+		relatorio.setDataFim(dataFim);
 		return relatorio;
 	}
 }

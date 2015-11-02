@@ -43,7 +43,7 @@ angular.module('csp').controller('MainController', function ($scope, Endpoints, 
 		var usuario = new Object();
 		usuario.nome = "Felipe";
 		usuario.sobrenome = "Piacsek";
-		usuario.email = "felipe..piacsek@fdte.org.br";
+		usuario.email = "felipe.piacsek@gmail.com";
 		usuario.residencia = new Object();
 		usuario.residencia.cep = "04111000";
 		console.log(usuario);

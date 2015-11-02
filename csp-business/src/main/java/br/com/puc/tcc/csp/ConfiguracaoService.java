@@ -24,6 +24,7 @@ public class ConfiguracaoService {
 			return this.key;
 		}
 	}
+	
 	@Inject
 	private ConfiguracoesRepository repository;
 	

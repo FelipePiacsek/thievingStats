@@ -1,4 +1,4 @@
-package br.com.puc.tcc.csp.comunicacao;
+package br.com.puc.tcc.csp;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -6,18 +6,6 @@ import java.time.Month;
 
 public class TimestampUtils {
 
-	public static void main(String[] args) {
-		StringBuilder sb = new StringBuilder("Relatório de criminalidade ");
-		Timestamp relatorio = primeiroDiaMesPassado();
-		LocalDate l = relatorio.toLocalDateTime().toLocalDate();
-		sb.append(l.getMonth().getValue());
-		sb.append("/");
-		sb.append(l.getYear());
-		sb.append(".");
-		sb.append("\n\n\n\n\n");
-		sb.append("Teste.");
-		System.out.println(sb.toString());
-	}
 	public static Timestamp primeiroDiaMesPassado() {
 		int ano = LocalDate.now().getYear();
 		Month mesPassado = LocalDate.now().getMonth().minus(1);
