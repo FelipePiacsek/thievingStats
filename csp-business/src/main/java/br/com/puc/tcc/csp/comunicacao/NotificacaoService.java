@@ -3,6 +3,7 @@ package br.com.puc.tcc.csp.comunicacao;
 import java.util.List;
 
 import javax.ejb.LocalBean;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -36,7 +37,7 @@ public class NotificacaoService {
 		emailService.enviarEmail(email);
 	}
 	
-	//Scheduler: uma vez por mês.
+	@Schedule(dayOfMonth = "7")
 	private void notificarTodos(){
 		List<Usuario> usuarios = usuarioRepository.fetchAll();
 		for (Usuario usuario : usuarios) {
