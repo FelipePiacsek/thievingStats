@@ -12,7 +12,7 @@ import br.com.puc.tcc.csp.repository.ConfiguracoesRepository;
 public class ConfiguracaoService {
 
 	public enum Configuracoes{
-		REMETENTE("EMAIL_REMETENTE"), SENDGRID_API("SENDGRID_API_KEY");
+		REMETENTE("EMAIL_REMETENTE"), SENDGRID_API("SENDGRID_API_KEY"), MANDRILL_API("MANDRILL_API_KEY");
 		
 		private String key;
 		

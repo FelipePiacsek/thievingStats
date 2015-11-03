@@ -7,7 +7,7 @@ import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import com.sendgrid.SendGrid.Email;
+import com.microtripit.mandrillapp.lutung.view.MandrillMessage;
 
 import br.com.puc.tcc.csp.TimestampUtils;
 import br.com.puc.tcc.csp.model.Relatorio;
@@ -33,7 +33,7 @@ public class NotificacaoService {
 	public void notificar(String emailUsuario){
 		Usuario usuario = usuarioRepository.fetchCompleteByEmail(emailUsuario);
 		Relatorio relatorio = relatorioFactory.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
-		Email email = emailFactory.construirEmail(relatorio, usuario);
+		MandrillMessage email = emailFactory.construirEmailMandrill(relatorio, usuario);
 		emailService.enviarEmail(email);
 	}
 	
@@ -42,7 +42,7 @@ public class NotificacaoService {
 		List<Usuario> usuarios = usuarioRepository.fetchAll();
 		for (Usuario usuario : usuarios) {
 			Relatorio relatorio = relatorioFactory.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
-			Email email = emailFactory.construirEmail(relatorio, usuario);
+			MandrillMessage email = emailFactory.construirEmailMandrill(relatorio, usuario);
 			emailService.enviarEmail(email);
 		}
 	}
