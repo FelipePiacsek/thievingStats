@@ -14,7 +14,6 @@ import br.com.puc.tcc.csp.model.crimes.LesaoCorporal;
 import br.com.puc.tcc.csp.model.crimes.Roubo;
 import br.com.puc.tcc.csp.model.locais.Bairro;
 import br.com.puc.tcc.csp.model.locais.Cidade;
-import br.com.puc.tcc.csp.model.locais.Local;
 import br.com.puc.tcc.csp.model.locais.Logradouro;
 import br.com.puc.tcc.csp.model.locais.Zona;
 import br.com.puc.tcc.csp.repository.crimes.EstuproRepository;
@@ -41,7 +40,7 @@ public class HistoricoCriminalFactory {
 	@Inject
 	private CriminalidadeService criminalidadeService;
 
-	public <T extends Local> HistoricoCriminal construirHistoricoLogradouro(Logradouro logradouro, Timestamp dataInicio, Timestamp dataFim) {
+	public HistoricoCriminal construirHistoricoLogradouro(Logradouro logradouro, Timestamp dataInicio, Timestamp dataFim) {
 		HistoricoCriminal historico = new HistoricoCriminal();
 		historico.setDataInicio(dataInicio);
 		historico.setDataFim(dataFim);
@@ -63,7 +62,7 @@ public class HistoricoCriminalFactory {
 		return historico;
 	}
 
-	public <T extends Local> HistoricoCriminal construirHistoricoBairro(Bairro bairro, Timestamp dataInicio, Timestamp dataFim) {
+	public HistoricoCriminal construirHistoricoBairro(Bairro bairro, Timestamp dataInicio, Timestamp dataFim) {
 		HistoricoCriminal historico = new HistoricoCriminal();
 		historico.setDataInicio(dataInicio);
 		historico.setDataFim(dataFim);
@@ -85,7 +84,7 @@ public class HistoricoCriminalFactory {
 		return historico;
 	}
 
-	public <T extends Local> HistoricoCriminal construirHistoricoZona(Zona zona, Timestamp dataInicio, Timestamp dataFim) {
+	public HistoricoCriminal construirHistoricoZona(Zona zona, Timestamp dataInicio, Timestamp dataFim) {
 		HistoricoCriminal historico = new HistoricoCriminal();
 		historico.setDataInicio(dataInicio);
 		historico.setDataFim(dataFim);
@@ -107,7 +106,7 @@ public class HistoricoCriminalFactory {
 		return historico;
 	}
 
-	public <T extends Local> HistoricoCriminal construirHistoricoCidade(Cidade cidade, Timestamp dataInicio, Timestamp dataFim) {
+	public HistoricoCriminal construirHistoricoCidade(Cidade cidade, Timestamp dataInicio, Timestamp dataFim) {
 		HistoricoCriminal historico = new HistoricoCriminal();
 		historico.setDataInicio(dataInicio);
 		historico.setDataFim(dataFim);
