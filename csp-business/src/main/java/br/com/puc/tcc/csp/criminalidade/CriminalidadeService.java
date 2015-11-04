@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import br.com.puc.tcc.csp.model.crimes.Estupro;
 import br.com.puc.tcc.csp.model.crimes.Homicidio;
+import br.com.puc.tcc.csp.model.crimes.IndiceCriminalidade;
 import br.com.puc.tcc.csp.model.crimes.LesaoCorporal;
 import br.com.puc.tcc.csp.model.crimes.Roubo;
 
@@ -23,19 +24,19 @@ public class CriminalidadeService{
 	@Inject
 	private HomicidioService homicidioService;
 	
-	public Double calcularIndiceRoubos(List<Roubo> roubos){
+	public IndiceCriminalidade calcularIndiceRoubos(List<Roubo> roubos){
 		return rouboService.calcularIndiceCriminalidade(roubos);
 	}
 	
-	public Double calcularIndiceEstupros(List<Estupro> estupros){
+	public IndiceCriminalidade calcularIndiceEstupros(List<Estupro> estupros){
 		return estuproService.calcularIndiceCriminalidade(estupros);
 	}
 	
-	public Double calcularIndiceHomicidios(List<Homicidio> homicidios){
+	public IndiceCriminalidade calcularIndiceHomicidios(List<Homicidio> homicidios){
 		return homicidioService.calcularIndiceCriminalidade(homicidios);
 	}
 	
-	public Double calcularIndiceLesoesCorporais(List<LesaoCorporal> lesoes){
+	public IndiceCriminalidade calcularIndiceLesoesCorporais(List<LesaoCorporal> lesoes){
 		return lesaoCorporalService.calcularIndiceCriminalidade(lesoes);
 	}
 

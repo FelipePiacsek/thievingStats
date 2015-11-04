@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 import br.com.puc.tcc.csp.base.RepositoryEssentials;
@@ -24,7 +26,7 @@ public abstract class AbstractCriminalidadeRepository<T extends Ocorrencia> exte
 	
 	private Root<T> from;
 	
-	CriteriaBuilder cb;
+	private CriteriaBuilder cb;
 	
 	private void initialize() {
 		query = getEntityManager().getCriteriaBuilder().createQuery(getEntityType());
@@ -34,7 +36,8 @@ public abstract class AbstractCriminalidadeRepository<T extends Ocorrencia> exte
 
 	public List<T> getOcorrenciasByLogradouroEDatas(Logradouro logradouro, Timestamp dataInicio, Timestamp dataFim){
 		initialize();
-		query.where(cb.and(cb.equal(from.get(Ocorrencia_.localDoCrime), logradouro), 
+		Join<T, Logradouro> joinLogradouro = from.join(Ocorrencia_.localDoCrime);
+		query.where(cb.and(cb.equal(joinLogradouro, logradouro), 
 						   cb.between(from.get(Ocorrencia_.dataOcorrencia), dataInicio, dataFim)));
 		return getResults(query);
 	}
@@ -42,21 +45,26 @@ public abstract class AbstractCriminalidadeRepository<T extends Ocorrencia> exte
 
 	public List<T> getOcorrenciasByBairroEDatas(Bairro bairro, Timestamp dataInicio, Timestamp dataFim){
 		initialize();
-		query.where(cb.and(cb.equal(from.get(Ocorrencia_.localDoCrime).get(Logradouro_.bairro), bairro), 
+		Join<Logradouro,Bairro> joinBairro = from.join(Ocorrencia_.localDoCrime, JoinType.LEFT).join(Logradouro_.bairro, JoinType.LEFT);
+		query.where(cb.and(cb.equal(joinBairro, bairro), 
 				cb.between(from.get(Ocorrencia_.dataOcorrencia), dataInicio, dataFim)));
 		return getResults(query);
 	}
 	
 	public List<T> getOcorrenciasByZonaEDatas(Zona zona, Timestamp dataInicio, Timestamp dataFim){
 		initialize();
-		query.where(cb.and(cb.equal(from.get(Ocorrencia_.localDoCrime).get(Logradouro_.bairro).get(Bairro_.zona), zona), 
+		Join<Bairro, Zona> joinZona = from.join(Ocorrencia_.localDoCrime, JoinType.LEFT).join(Logradouro_.bairro, JoinType.LEFT)
+				.join(Bairro_.zona, JoinType.LEFT);
+		query.where(cb.and(cb.equal(joinZona, zona), 
 				cb.between(from.get(Ocorrencia_.dataOcorrencia), dataInicio, dataFim)));
 		return getResults(query);
 	}
 	
 	public List<T> getOcorrenciasByCidadeEDatas(Cidade cidade, Timestamp dataInicio, Timestamp dataFim){
 		initialize();
-		query.where(cb.and(cb.equal(from.get(Ocorrencia_.localDoCrime).get(Logradouro_.bairro).get(Bairro_.zona).get(Zona_.cidade), cidade), 
+		Join<Zona, Cidade> joinCidade = from.join(Ocorrencia_.localDoCrime, JoinType.LEFT).join(Logradouro_.bairro, JoinType.LEFT)
+				.join(Bairro_.zona, JoinType.LEFT).join(Zona_.cidade, JoinType.LEFT);
+		query.where(cb.and(cb.equal(joinCidade, cidade), 
 				cb.between(from.get(Ocorrencia_.dataOcorrencia), dataInicio, dataFim)));
 		return getResults(query);
 	}

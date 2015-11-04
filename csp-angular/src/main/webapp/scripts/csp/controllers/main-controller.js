@@ -29,7 +29,7 @@ angular.module('csp').controller('MainController', function ($scope, Endpoints, 
 		
 		console.log(query);
 		
-		Requests.Do(Endpoints.base.locais.cidade.historicoCriminal.replace(":id", 1)).get(query).$promise.then(function(response){
+		Requests.Do(Endpoints.base.locais.zona.historicoCriminal.replace(":id", 2)).get(query).$promise.then(function(response){
 			historico = response.objects[0];
 			historico.dataInicio = new Date(historico.dataInicio);
 			historico.dataFim = new Date(historico.dataFim);

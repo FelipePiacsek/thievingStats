@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import br.com.puc.tcc.csp.model.crimes.Estupro;
+import br.com.puc.tcc.csp.model.crimes.IndiceCriminalidade;
 import br.com.puc.tcc.csp.model.crimes.Ocorrencia;
 
 @Stateless
@@ -19,16 +20,18 @@ public class EstuproService implements ICriminalidade {
 	private static final Double fatorMaximoIdade = 1.75;
 	
 	@Override
-	public Double calcularIndiceCriminalidade(List<? extends Ocorrencia> ocorrencias) {
-		Double indice = efetuarCalculoIndice(ocorrencias);
+	public IndiceCriminalidade calcularIndiceCriminalidade(List<? extends Ocorrencia> ocorrencias) {
+		IndiceCriminalidade indice = efetuarCalculoIndice(ocorrencias);
 		
 		return indice;
 	}
 
-	private Double efetuarCalculoIndice(List<? extends Ocorrencia> ocorrencias) {
+	private IndiceCriminalidade efetuarCalculoIndice(List<? extends Ocorrencia> ocorrencias) {
 		Double fatorMediaDeIdadeVitimas = calcularFatorMediaDeIdade(ocorrencias);
 		Integer quantidadeDeEstupros = ocorrencias.size();
-		return quantidadeDeEstupros * mediaAritmeticaPenas(penaMinima, penaMaxima) * fatorMediaDeIdadeVitimas;
+		IndiceCriminalidade indice = new IndiceCriminalidade();
+		indice.setValor(quantidadeDeEstupros * mediaAritmeticaPenas(penaMinima, penaMaxima) * fatorMediaDeIdadeVitimas);
+		return indice;
 	}
 
 	private Double calcularFatorMediaDeIdade(List<? extends Ocorrencia> ocorrencias) {

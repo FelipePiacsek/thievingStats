@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import br.com.puc.tcc.csp.model.crimes.IndiceCriminalidade;
 import br.com.puc.tcc.csp.model.crimes.Ocorrencia;
 import br.com.puc.tcc.csp.model.crimes.Roubo;
 
@@ -19,14 +20,16 @@ public class RouboService implements ICriminalidade {
 	private static final Double fatorMinimoMaoArmada = 1.0;
 	
 	@Override
-	public Double calcularIndiceCriminalidade(List<? extends Ocorrencia> ocorrencias) {
-		Double indice = efetuarCalculoIndice(ocorrencias);
+	public IndiceCriminalidade calcularIndiceCriminalidade(List<? extends Ocorrencia> ocorrencias) {
+		IndiceCriminalidade indice = efetuarCalculoIndice(ocorrencias);
 		return indice;
 	}
 
-	private Double efetuarCalculoIndice(List<? extends Ocorrencia> ocorrencias) {
+	private IndiceCriminalidade efetuarCalculoIndice(List<? extends Ocorrencia> ocorrencias) {
 		Double fatorMaoArmada = calcularFatorMaoArmada(ocorrencias);
-		return ocorrencias.size() * mediaAritmeticaPenas(penaMinima, penaMaxima) * fatorMaoArmada;
+		IndiceCriminalidade indice = new IndiceCriminalidade();
+		indice.setValor(ocorrencias.size() * mediaAritmeticaPenas(penaMinima, penaMaxima) * fatorMaoArmada);
+		return indice;
 	}
 
 	private Double calcularFatorMaoArmada(List<? extends Ocorrencia> ocorrencias) {

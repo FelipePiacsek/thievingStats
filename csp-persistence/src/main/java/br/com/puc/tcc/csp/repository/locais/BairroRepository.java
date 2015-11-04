@@ -30,6 +30,15 @@ public class BairroRepository extends RepositoryEssentials<Bairro>{
 	public Bairro fetchCompleteById(Long id) {
 		initialize();
 		from.fetch(Bairro_.logradouros);
+		from.fetch(Bairro_.zona);
 		query.where(cb.equal(from.get(Bairro_.id), id));
 		return getSingleResult(query);
-	}}
+	}
+	
+	public Bairro fetchByIdWithZona(Long id) {
+		initialize();
+		from.fetch(Bairro_.zona);
+		query.where(cb.equal(from.get(Bairro_.id), id));
+		return getSingleResult(query);
+	}
+}

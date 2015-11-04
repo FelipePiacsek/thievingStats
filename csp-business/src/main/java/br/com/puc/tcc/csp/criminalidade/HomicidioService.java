@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import br.com.puc.tcc.csp.model.crimes.Homicidio;
+import br.com.puc.tcc.csp.model.crimes.IndiceCriminalidade;
 import br.com.puc.tcc.csp.model.crimes.Ocorrencia;
 
 @Stateless
@@ -25,22 +26,24 @@ public class HomicidioService implements ICriminalidade {
 	private static final Double fatorHomicidioQualificado = 1.75;
 	
 	@Override
-	public Double calcularIndiceCriminalidade(List<? extends Ocorrencia> ocorrencias) {
+	public IndiceCriminalidade calcularIndiceCriminalidade(List<? extends Ocorrencia> ocorrencias) {
 		Integer quantidadeCulposos = getQuantidadeHomicidios(ocorrencias, Homicidio.Qualificacao.CULPOSO);
 		Integer quantidadeQualificados = getQuantidadeHomicidios(ocorrencias, Homicidio.Qualificacao.QUALIFICADO);
 		Integer quantidadePrivilegiados = getQuantidadeHomicidios(ocorrencias, Homicidio.Qualificacao.PRIVILEGIADO);
 		Integer quantidadeSimples = getQuantidadeHomicidios(ocorrencias, Homicidio.Qualificacao.SIMPLES);
 		
-		Double indice = efetuarCalculoIndice(quantidadeCulposos, quantidadeQualificados, quantidadePrivilegiados, quantidadeSimples);
+		IndiceCriminalidade indice = efetuarCalculoIndice(quantidadeCulposos, quantidadeQualificados, quantidadePrivilegiados, quantidadeSimples);
 		
 		return indice;
 	}
 
-	private double efetuarCalculoIndice(Integer quantidadeCulposos, Integer quantidadeQualificados, Integer quantidadePrivilegiados, Integer quantidadeSimples) {
-		return (quantidadeCulposos      * fatorHomicidioCulposo + 
-				quantidadeQualificados  * fatorHomicidioQualificado + 
-				quantidadePrivilegiados * fatorHomicidioPrivilegiado + 
-				quantidadeSimples       * fatorHomicidioSimples) * mediaAritmeticaPenas(penaMinima, penaMaxima);
+	private IndiceCriminalidade efetuarCalculoIndice(Integer quantidadeCulposos, Integer quantidadeQualificados, Integer quantidadePrivilegiados, Integer quantidadeSimples) {
+		IndiceCriminalidade indice = new IndiceCriminalidade();
+		indice.setValor((quantidadeCulposos     * fatorHomicidioCulposo + 
+						quantidadeQualificados  * fatorHomicidioQualificado + 
+						quantidadePrivilegiados * fatorHomicidioPrivilegiado + 
+						quantidadeSimples       * fatorHomicidioSimples) * mediaAritmeticaPenas(penaMinima, penaMaxima));
+		return indice;
 	}
 
 	private Integer getQuantidadeHomicidios(List<? extends Ocorrencia> ocorrencias, Homicidio.Qualificacao qualificacao) {

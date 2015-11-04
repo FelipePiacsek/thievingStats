@@ -19,7 +19,7 @@ public class UsuarioValidador {
 
 	public List<ErrosValidacaoUsuario> validarCadastro(Usuario usuario){
 		ArrayList<ErrosValidacaoUsuario> erros = new ArrayList<ErrosValidacaoUsuario>();
-		if(usuario.getEmail() == null || usuario.getNome() == null || usuario.getSobrenome() == null || usuario.getResidencia() == null || usuario.getResidencia().getCep() == null){
+		if(usuario.getEmail().equals("") || usuario.getNome().equals("") || usuario.getSobrenome().equals("") || usuario.getResidencia() == null || usuario.getResidencia().getCep().equals("")){
 			erros.add(ErrosValidacaoUsuario.CADASTRO_INCOMPLETO);
 		}else{
 			if(usuarioRepository.existe(usuario)){

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import br.com.puc.tcc.csp.model.crimes.Estupro;
 import br.com.puc.tcc.csp.model.crimes.HistoricoCriminal;
 import br.com.puc.tcc.csp.model.crimes.Homicidio;
+import br.com.puc.tcc.csp.model.crimes.IndiceCriminalidade;
 import br.com.puc.tcc.csp.model.crimes.LesaoCorporal;
 import br.com.puc.tcc.csp.model.crimes.Roubo;
 import br.com.puc.tcc.csp.model.locais.Bairro;
@@ -56,7 +57,7 @@ public class HistoricoCriminalFactory {
 		historico.setLesoes(lesoes.size());
 		historico.setRoubos(roubos.size());
 
-		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
+		IndiceCriminalidade indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
 		
 		return historico;
@@ -78,7 +79,7 @@ public class HistoricoCriminalFactory {
 		historico.setLesoes(lesoes.size());
 		historico.setRoubos(roubos.size());
 		
-		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
+		IndiceCriminalidade indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
 		
 		return historico;
@@ -100,7 +101,7 @@ public class HistoricoCriminalFactory {
 		historico.setLesoes(lesoes.size());
 		historico.setRoubos(roubos.size());
 		
-		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
+		IndiceCriminalidade indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
 		
 		return historico;
@@ -122,17 +123,19 @@ public class HistoricoCriminalFactory {
 		historico.setLesoes(lesoes.size());
 		historico.setRoubos(roubos.size());
 		
-		Double indice = getIndice(estupros, homicidios, lesoes, roubos);
+		IndiceCriminalidade indice = getIndice(estupros, homicidios, lesoes, roubos);
 		historico.setIndiceCriminalidade(indice);
 		return historico;
 	}
 
-	private Double getIndice(List<Estupro> estupros, List<Homicidio> homicidios, List<LesaoCorporal> lesoes, List<Roubo> roubos) {
-		Double iEstupros = criminalidadeService.calcularIndiceEstupros(estupros);
-		Double iHomicidios = criminalidadeService.calcularIndiceHomicidios(homicidios);
-		Double iLesoes = criminalidadeService.calcularIndiceLesoesCorporais(lesoes);
-		Double iRoubos = criminalidadeService.calcularIndiceRoubos(roubos);
-		return iEstupros + iHomicidios + iLesoes + iRoubos;
+	private IndiceCriminalidade getIndice(List<Estupro> estupros, List<Homicidio> homicidios, List<LesaoCorporal> lesoes, List<Roubo> roubos) {
+		IndiceCriminalidade iEstupros = criminalidadeService.calcularIndiceEstupros(estupros);
+		IndiceCriminalidade iHomicidios = criminalidadeService.calcularIndiceHomicidios(homicidios);
+		IndiceCriminalidade iLesoes = criminalidadeService.calcularIndiceLesoesCorporais(lesoes);
+		IndiceCriminalidade iRoubos = criminalidadeService.calcularIndiceRoubos(roubos);
+		IndiceCriminalidade indice = new IndiceCriminalidade();
+		indice.setValor(iEstupros.getValor() + iHomicidios.getValor() + iRoubos.getValor() + iLesoes.getValor());
+		return indice;
 	}
 
 }

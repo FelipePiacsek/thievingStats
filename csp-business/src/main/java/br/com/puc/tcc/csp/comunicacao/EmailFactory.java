@@ -49,6 +49,7 @@ public class EmailFactory {
 		email.setText(corpoEmail(relatorio, usuario));
 		return email;
 	}
+	
 	private String assuntoEmail(Timestamp dataInicio) {
 		StringBuilder sb = new StringBuilder("Relatório de criminalidade ");
 		LocalDate l = dataInicio.toLocalDateTime().toLocalDate();
@@ -70,13 +71,13 @@ public class EmailFactory {
 		sb.append(relatorio.getDataInicio().toLocalDateTime().getYear());
 		sb.append("):\n\n");
 
-		sb.append(getTextoFromHistorico(relatorio.getHistoricoCidade(), "Cidade"));
-		sb.append("\n\n");
-		sb.append(getTextoFromHistorico(relatorio.getHistoricoZona(), "Zona"));
+		sb.append(getTextoFromHistorico(relatorio.getHistoricoLogradouro(), "Logradouro"));
 		sb.append("\n\n");
 		sb.append(getTextoFromHistorico(relatorio.getHistoricoBairro(), "Bairro"));
 		sb.append("\n\n");
-		sb.append(getTextoFromHistorico(relatorio.getHistoricoLogradouro(), "Logradouro"));
+		sb.append(getTextoFromHistorico(relatorio.getHistoricoZona(), "Zona"));
+		sb.append("\n\n");
+		sb.append(getTextoFromHistorico(relatorio.getHistoricoCidade(), "Cidade"));
 
 		sb.append(
 				"\n\nIncentivamos a divulgação destes dados para nos ajudar na campanha pela popularização dos dados abertos.");
@@ -97,7 +98,7 @@ public class EmailFactory {
 		sb.append("\nEstupros: ");
 		sb.append(historico.getEstupros());
 
-		sb.append("\nHomídios: ");
+		sb.append("\nHomicídios: ");
 		sb.append(historico.getHomicidios());
 
 		sb.append("\nLesões Corporais: ");

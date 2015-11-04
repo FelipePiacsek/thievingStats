@@ -11,7 +11,7 @@ var cspApp = angular.module('csp',
 				main : "views/components/main.html"
 			},
   			modais : {
-  				cadastro: 'views/modals/cadastro-modal.html'
+  				cadastro: 'views/components/modals/cadastro-modal.html'
   			}
 		}
 }).config(function($stateProvider, $urlRouterProvider, cspConstants) {

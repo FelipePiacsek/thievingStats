@@ -30,6 +30,14 @@ public class ZonaRepository extends RepositoryEssentials<Zona>{
 	public Zona fetchCompleteById(Long id) {
 		initialize();
 		from.fetch(Zona_.bairros);
+		from.fetch(Zona_.cidade);
+		query.where(cb.equal(from.get(Zona_.id), id));
+		return getSingleResult(query);
+	}
+	
+	public Zona fetchByIdWithCidade(Long id) {
+		initialize();
+		from.fetch(Zona_.cidade);
 		query.where(cb.equal(from.get(Zona_.id), id));
 		return getSingleResult(query);
 	}

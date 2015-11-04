@@ -47,8 +47,8 @@ public class BairroService implements ILocalService{
 
 	@Override
 	public HistoricoCriminal getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
-		Bairro bairro = repository.fetchCompleteById(id);
-		return historicoCriminalService.getHistoricoCriminal(bairro , dataInicio, dataFim);
+		Bairro bairro = repository.fetchByIdWithZona(id);
+		return historicoCriminalService.getHistoricoCriminal(bairro, dataInicio, dataFim);
 	}
 
 

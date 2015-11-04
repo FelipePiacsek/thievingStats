@@ -1,6 +1,7 @@
 package br.com.puc.tcc.csp.locais;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -23,8 +24,16 @@ public class ZonaService implements ILocalService {
 	
 	@Override
 	public HistoricoCriminal getHistoricoCriminal(Long id, Timestamp dataInicio, Timestamp dataFim) {
-		Zona zona = repository.fetchCompleteById(id);
+		Zona zona = repository.fetchByIdWithCidade(id);
 		return historicoCriminalService.getHistoricoCriminal(zona, dataInicio, dataFim);
+	}
+
+	public Zona getZonaById(Long id) {
+		return repository.fetchCompleteById(id);
+	}
+
+	public List<Zona> getAll() {
+		return repository.fetchAll();
 	}
 
 }

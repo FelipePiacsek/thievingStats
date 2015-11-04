@@ -12,7 +12,7 @@ public class HistoricoCriminal {
 	
 	private Local local;
 	
-	private Double indiceCriminalidade;
+	private IndiceCriminalidade indiceCriminalidade;
 	
 	private Integer roubos;
 	
@@ -78,11 +78,11 @@ public class HistoricoCriminal {
 		this.local = local;
 	}
 
-	public Double getIndiceCriminalidade() {
+	public IndiceCriminalidade getIndiceCriminalidade() {
 		return indiceCriminalidade;
 	}
 
-	public void setIndiceCriminalidade(Double indiceCriminalidade) {
+	public void setIndiceCriminalidade(IndiceCriminalidade indiceCriminalidade) {
 		this.indiceCriminalidade = indiceCriminalidade;
 	}
 }
