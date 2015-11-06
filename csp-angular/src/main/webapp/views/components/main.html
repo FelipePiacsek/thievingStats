@@ -1,9 +1,9 @@
 <div ng-controller="MainController">
-	<button ng-click="teste()">
-		Teste
-	</button>
+	<h1>Histórico criminal da cidade de São Paulo</h1>
+	<canvas id="cidade" class="chart chart-pie" chart-data="dadosGraficos['CIDADE'].valores"
+		chart-labels="dadosGraficos['CIDADE'].labels">
+	</canvas>
 	<button data-toggle="modal" data-target="#cadastro-modal">
-		Cadastrar
-	</button>
+		Cadastrar</button>
 </div>
 <cadastro-modal></cadastro-modal>

@@ -3,7 +3,7 @@ var cspApp = angular.module('csp',
    'csp.endpoints',
    'ui.router',
    'ui.bootstrap',
-   'ngStorage',
+   'chart.js',
    'ngResource'
   ]).constant('cspConstants',{
 		templates: {
