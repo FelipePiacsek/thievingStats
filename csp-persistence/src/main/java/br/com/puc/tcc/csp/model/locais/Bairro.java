@@ -23,6 +23,7 @@ public class Bairro extends Local {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_zona")
+	@JsonIgnore
 	private Zona zona;
 
 	public Zona getZona() {

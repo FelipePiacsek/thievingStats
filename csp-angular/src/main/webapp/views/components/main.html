@@ -1,8 +1,34 @@
 <div ng-controller="MainController">
 	<h1>Histórico criminal da cidade de São Paulo</h1>
-	<canvas id="cidade" class="chart chart-pie" chart-data="dadosGraficos['CIDADE'].valores"
-		chart-labels="dadosGraficos['CIDADE'].labels">
-	</canvas>
+	<div class="col md-12" sytle="inline-block;">
+		<div ng-if="historicos['CIDADE']" class="col md-4">
+			<grafico-directive local="historicos['CIDADE'].local.nome">
+			</grafico-directive>
+		</div>
+		<select class="form-control" id="zona-select" name="zona-select" ng-model="selectedZona" 
+				ng-options="z as z.nome for z in zonasDisponiveis" ng-change="getHistoricoZona()">
+			<option value="">Selecione uma zona</option>
+		</select>
+		<div ng-if="historicos['ZONA']" class="col md-4">
+			<grafico-directive local="historicos['ZONA'].local.nome">
+			</grafico-directive>
+		</div>
+		<select class="form-control" id="bairro-select" name="bairro-select" ng-model="selectedBairro" 
+				ng-options="b as b.nome for b in bairrosDisponiveis" ng-change="getHistoricoBairro()">
+			<option value="">Selecione um bairro</option>
+		</select>
+		<div ng-if="historicos['BAIRRO']" class="col md-4">
+			<grafico-directive local="historicos['BAIRRO'].local.nome">
+			</grafico-directive>
+		</div>
+		<label for="project-name">CEP</label>
+		<input id="logradouro-input" name="logradouro-input" type="text" class="form-control"
+		 ng-model="cepLogradouro" on-enter="getHistoricoLogradouro()"/>
+		<div ng-if="historicos['LOGRADOURO']" class="col md-4">
+			<grafico-directive local="historicos['LOGRADOURO'].local.nome">
+			</grafico-directive>
+		</div>
+	</div>
 	<button data-toggle="modal" data-target="#cadastro-modal">
 		Cadastrar</button>
 </div>

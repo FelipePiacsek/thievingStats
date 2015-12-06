@@ -35,7 +35,7 @@ public class RouboService implements ICriminalidade {
 	private Double calcularFatorMaoArmada(List<? extends Ocorrencia> ocorrencias) {
 		Long quantidadeMaoArmada = ocorrencias.stream().filter(roubo -> ((Roubo) roubo).isMaoArmada()).count();
 		Double mediaMaoArmada =  (quantidadeMaoArmada.doubleValue() / ocorrencias.size());
-		return fatorMinimoMaoArmada + (mediaMaoArmada / 100.0);
+		return fatorMinimoMaoArmada + mediaMaoArmada;
 	}
 	
 

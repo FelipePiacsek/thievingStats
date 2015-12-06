@@ -2,6 +2,7 @@ package br.com.puc.tcc.csp.comunicacao;
 
 import java.io.IOException;
 
+import javax.ejb.Asynchronous;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -18,6 +19,7 @@ import br.com.puc.tcc.csp.ConfiguracaoService.Configuracoes;
 
 @Stateless
 @LocalBean
+@Asynchronous
 public class EmailService {
 
 	@Inject

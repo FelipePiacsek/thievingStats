@@ -8,7 +8,9 @@ var cspApp = angular.module('csp',
   ]).constant('cspConstants',{
 		templates: {
 			componentes : {
-				main : "views/components/main.html"
+				main : "views/components/main.html",
+				grafico : "views/components/grafico.html"
+				
 			},
   			modais : {
   				cadastro: 'views/components/modals/cadastro-modal.html'
@@ -20,11 +22,11 @@ var cspApp = angular.module('csp',
 	.state('csp', {
 		name: 'csp',
 		abstract: true,
-		url: 'csp',
+		url: '/criminalidade',
 		template: "<div ui-view></div>"
 	}).state('csp.main',{
 		name: 'csp.main',
-		url: 'csp/visualização',
+		url: '/visualizar',
 		templateUrl: cspConstants.templates.componentes.main,
 	});
 });

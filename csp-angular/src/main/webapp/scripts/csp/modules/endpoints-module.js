@@ -2,7 +2,7 @@ angular.module('csp.endpoints', []).constant('Endpoints', {
 	base : {
 		locais :{
 			logradouro : {
-				model : '/csp-resources/logradouro/',
+				model : '/csp-resources/logradouro/cep/',
 				historicoCriminal : '/csp-resources/logradouro/:id/historicoCriminal'
 			},
 			bairro : {

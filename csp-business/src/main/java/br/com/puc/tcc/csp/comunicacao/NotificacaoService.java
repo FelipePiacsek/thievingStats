@@ -17,6 +17,7 @@ import br.com.puc.tcc.csp.repository.UsuarioRepository;
 
 @Stateless
 @LocalBean
+@Asynchronous
 public class NotificacaoService {
 	
 	@Inject
@@ -31,7 +32,6 @@ public class NotificacaoService {
 	@Inject
 	private EmailFactory emailFactory;
 	
-	@Asynchronous
 	public void notificar(String emailUsuario){
 		Usuario usuario = usuarioRepository.fetchCompleteByEmail(emailUsuario);
 		Relatorio relatorio = relatorioFactory.construirRelatorio(usuario, TimestampUtils.primeiroDiaMesPassado(), TimestampUtils.ultimoDiaMesPassado());
@@ -39,7 +39,6 @@ public class NotificacaoService {
 		emailService.enviarEmail(email);
 	}
 	
-	@Asynchronous
 	@Schedule(dayOfMonth = "7")
 	private void notificarTodos(){
 		List<Usuario> usuarios = usuarioRepository.fetchAll();
