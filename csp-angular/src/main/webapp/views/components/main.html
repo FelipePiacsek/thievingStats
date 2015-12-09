@@ -35,11 +35,12 @@
 		</div>
 	</div>
 </div>
+background="https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xap1/v/t34.0-12/12351075_841277815991100_468796431_n.jpg?oh=e7853316343a665309d198a02d6c070c&oe=56698443&__gda__=1449833433_d9c51fb1a63aa8694e6201de00b9fc65"
 -->
-<div class="panel panel-default" ng-controller="MainController"
-	align="center">
+<div class="panel panel-default grounded" ng-controller="MainController"
+	align="center" >
 	<div class="panel-heading" align="center">
-		<h1 class="panel-title">Histórico criminal da cidade de São Paulo</h1>
+		<h1 class="panel-title">Como está meu bairro?</h1>
 	</div>
 	<div class="panel-body" align="center">
 		<div class="form-group m-t-25 col-md-12 p-l-0"
@@ -86,7 +87,7 @@
 			</div>
 			<div class="col-md-4">
 				<h4>Logradouro</h4>
-				<div class="col-md-12"  style="display: inline-block;">
+				<div class="col-md-10"  style="display: inline-block;">
 					<div class="col-md-2">
 						<label for="project-name">CEP</label> 
 					</div>
@@ -96,15 +97,16 @@
 						ng-model="cepLogradouro" on-enter="getHistoricoLogradouro()" />
 					</div>
 				</div>
-				<div ng-if="historicos['LOGRADOURO']" class="col md-4">
+				<br>
+				<div ng-if="historicos['LOGRADOURO']" >
 					<grafico-directive local="historicos['LOGRADOURO'].local.nome"
 						show-name="true"> </grafico-directive>
 				</div>
 			</div>
 		</div>
 
-	</div>
 	<button data-toggle="modal" data-target="#cadastro-modal"
 		class="btn btn-default">Cadastrar</button>
+	</div>
 </div>
 <cadastro-modal></cadastro-modal>
